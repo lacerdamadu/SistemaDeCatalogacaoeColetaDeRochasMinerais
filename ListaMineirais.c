@@ -1,17 +1,11 @@
-#include "Minerais.h"
+#include "ListaMineirais.h"
 #include <stdio.h>
-#include <stdlib.h>
-#define InicioArranjo 0
-#define MaxTam 3
+#include <string.h>
 
-typedef struct {
-
- Minerais listaminerais[MaxTam];
- int Primeiro, Ultimo;
-
-} ListaMinerais;
-
-void IniVListaM(ListaMinerais* ListaM); //Inicializa uma lista de minerais vazia
+void IniVListaM(ListaMinerais* ListaM){
+    ListaM->Primeiro = InicioArranjo;
+    ListaM->Ultimo = ListaM->Primeiro;
+}
 
 int InsMineral(ListaMinerais* ListaM, Minerais NovoM); //Insere um mineral ao final da lista
 

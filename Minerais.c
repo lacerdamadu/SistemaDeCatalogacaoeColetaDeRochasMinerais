@@ -42,7 +42,6 @@ void InicializaMineral(Minerais *Mineral, char* Nome, float Dureza, float Reativ
     setDureza(Mineral, Dureza);
     setReatividade(Mineral, Reatividade);
     setCor(Mineral, Cores);
-    AdicionaMineral(Minerais Mineral);
 }
 
 void setNomeMineral(Minerais *Mineral, char* Nome){
