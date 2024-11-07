@@ -17,9 +17,10 @@ typedef struct{
     Cor Cores;
 }Minerais;
 
-void PreencheMineral(Minerais *Mineral);
-void InicializaMineral(Minerais Mineral, char Nome, float Dureza, float Reatividade, Cor Cores);
+void PreencheMineral(Minerais *Mineral);//Recebe o nome do Mineral e preenche os valores predeterminados
+void InicializaMineral(Minerais Mineral, char Nome, float Dureza, float Reatividade, Cor Cores);//Chama as funções sets para guardar os valores das variaveis
 
+//Sets e Gets
 void setNomeMineral(Minerais Mineral, char Nome);
 char* getNomeMineral(Minerais *Mineral);
 
