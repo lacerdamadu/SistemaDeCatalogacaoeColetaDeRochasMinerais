@@ -2,34 +2,34 @@
 #include <stdio.h>
 #include <string.h>
 
-void PreencheMineral(Minerais *Mineral, char* VetorRochas){
+void PreencheMineral(Minerais *Mineral, char* VetorMinerais){
     float Dureza, Reatividade;
     Cor Cores;
     char* Nome;
-    int tamVetor = len(VetorRochas);
+    int tamVetor = len(VetorMinerais);
     for(int i=0;i<tamVetor;i++){
-        strcpy(Nome, VetorRochas[i]);
-        if(strcmp(VetorRochas[i], "Ferrolita")==0){
+        strcpy(Nome, VetorMinerais[i]);
+        if(strcmp(VetorMinerais[i], "Ferrolita")==0){
             Dureza = 0.5;
             Reatividade = 0.7;
             Cores = 1;
         }
-        if(strcmp(VetorRochas[i], "Solarium")==0){
+        if(strcmp(VetorMinerais[i], "Solarium")==0){
             Dureza = 0.9;
             Reatividade = 0.2;
             Cores = 2;
         }
-        if(strcmp(VetorRochas[i], "Aquavitae")==0){
+        if(strcmp(VetorMinerais[i], "Aquavitae")==0){
             Dureza = 0.5;
             Reatividade = 0.8;
             Cores = 3;
         }
-        if(strcmp(VetorRochas[i], "Terranita")==0){
+        if(strcmp(VetorMinerais[i], "Terranita")==0){
             Dureza = 0.7;
             Reatividade = 0.6;
             Cores = 4;
         }
-         if(strcmp(VetorRochas[i], "Calaris")==0){
+         if(strcmp(VetorMinerais[i], "Calaris")==0){
             Dureza = 0.6;
             Reatividade = 0.5;
             Cores = 5;
@@ -42,7 +42,7 @@ void InicializaMineral(Minerais *Mineral, char* Nome, float Dureza, float Reativ
     setDureza(Mineral, Dureza);
     setReatividade(Mineral, Reatividade);
     setCor(Mineral, Cores);
-    AdicionaRocha(Minerais Mineral);
+    AdicionaMineral(Minerais Mineral);
 }
 
 void setNomeMineral(Minerais *Mineral, char* Nome){
