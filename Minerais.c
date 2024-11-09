@@ -2,43 +2,43 @@
 #include <stdio.h>
 #include <string.h>
 
-void PreencheMineral(Minerais *Mineral){
+void PreencheMineral(Minerais *Mineral, char *Nome){
     double Dureza, Reatividade;
     Cor Cores;
-    char* Nome;
     if(strcmp(Nome, "Ferrolita")==0){
         Dureza = 0.5;
         Reatividade = 0.7;
-        Cores = 1;
+        Cores = Acizentado;
     }
     else if(strcmp(Nome, "Solarium")==0){
         Dureza = 0.9;
         Reatividade = 0.2;
-        Cores = 2;
+        Cores = Amarelo;
     }
     else if(strcmp(Nome, "Aquavitae")==0){
         Dureza = 0.5;
         Reatividade = 0.8;
-        Cores = 3;
+        Cores = Azulado;
     }
     else if(strcmp(Nome, "Terranita")==0){
         Dureza = 0.7;
         Reatividade = 0.6;
-        Cores = 4;
+        Cores = Marrom;
     }
     else if(strcmp(Nome, "Calaris")==0){
         Dureza = 0.6;
         Reatividade = 0.5;
-        Cores = 5;
+        Cores = Vermelho;
     }
     InicializaMineral(Mineral, Nome, Dureza, Reatividade, Cores);
 }
 
-void InicializaMineral(Minerais *Mineral, char* Nome, double Dureza, double Reatividade, Cor Cores){
+Minerais InicializaMineral(Minerais *Mineral, char* Nome, double Dureza, double Reatividade, Cor Cores){
     setNomeMineral(Mineral, Nome);
     setDureza(Mineral, Dureza);
     setReatividade(Mineral, Reatividade);
     setCor(Mineral, Cores);
+    return(*Mineral);
 }
 
 void setNomeMineral(Minerais *Mineral, char* Nome){
