@@ -30,7 +30,7 @@ double getDureza(Minerais *Mineral);
 void setReatividade(Minerais *Mineral, double Reatividade);
 double getReatividade(Minerais *Mineral);
 
-void setCor(Minerais *Mineral, Cor Cores);
-Cor getCor(Minerais *Mineral);
+void setCores(Minerais *Mineral, Cor Cores);
+Cor getCores(Minerais *Mineral);
 
 #endif

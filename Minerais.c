@@ -37,7 +37,7 @@ Minerais InicializaMineral(Minerais *Mineral, char* Nome, double Dureza, double 
     setNomeMineral(Mineral, Nome);
     setDureza(Mineral, Dureza);
     setReatividade(Mineral, Reatividade);
-    setCor(Mineral, Cores);
+    setCores(Mineral, Cores);
     return(*Mineral);
 }
 

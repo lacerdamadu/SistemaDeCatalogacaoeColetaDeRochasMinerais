@@ -45,12 +45,11 @@ const char *tranformacor(Cor Cores){
 }
 
 void ImprimeListaM(ListaMinerais* ListaM){
-    int i = 0;
-    while (ListaM->listaminerais[i].Nome!= NULL){
+    for(int i = 0; i < ListaM->Ultimo; i++){
         printf("%s\n", ListaM->listaminerais[i].Nome);
-        printf("%.2f\n", ListaM->listaminerais[i].Reatividade);
-        printf("%.2f", ListaM->listaminerais[i].Dureza);
-        printf("%s\n", tranformacor(ListaM->listaminerais[i].Cores));
+        printf("Reat: %.2f\n", ListaM->listaminerais[i].Reatividade);
+        printf("Dureza: %.2f\n", ListaM->listaminerais[i].Dureza);
+        printf("Cor: %s\n", tranformacor(ListaM->listaminerais[i].Cores));
         printf("\n");
     }
 }
