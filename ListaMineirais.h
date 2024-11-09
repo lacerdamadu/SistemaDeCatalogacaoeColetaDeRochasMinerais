@@ -13,8 +13,8 @@ typedef struct {
 
 void IniVListaM(ListaMinerais* ListaM); //Inicializa uma lista de minerais vazia
 
-int InsMineral(ListaMinerais* ListaM, Minerais *NovoM); //Insere um mineral ao final da lista
+void InsMineral(ListaMinerais* ListaM, char *NomeNov); //Insere um mineral ao final da lista
 
-int RetMineral(ListaMinerais* ListaM, int pos, Minerais *MinRet); //Retira o mineiral da lista que está na posição "pos"
+int RetMineral(ListaMinerais* ListaM, char *Nomed, Minerais *MinRet); //Retira o mineiral da lista de nome "Nomed"
 
 void ImprimeListaM(ListaMinerais* ListaM); //Imprime toda a lista de Minerais
