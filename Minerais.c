@@ -2,41 +2,38 @@
 #include <stdio.h>
 #include <string.h>
 
-void PreencheMineral(Minerais *Mineral, char* VetorMinerais){
+void PreencheMineral(Minerais *Mineral){
     float Dureza, Reatividade;
     Cor Cores;
     char* Nome;
-    int tamVetor = len(VetorMinerais);
-    for(int i=0;i<tamVetor;i++){
-        strcpy(Nome, VetorMinerais[i]);
-        if(strcmp(VetorMinerais[i], "Ferrolita")==0){
-            Dureza = 0.5;
-            Reatividade = 0.7;
-            Cores = 1;
-        }
-        if(strcmp(VetorMinerais[i], "Solarium")==0){
-            Dureza = 0.9;
-            Reatividade = 0.2;
-            Cores = 2;
-        }
-        if(strcmp(VetorMinerais[i], "Aquavitae")==0){
-            Dureza = 0.5;
-            Reatividade = 0.8;
-            Cores = 3;
-        }
-        if(strcmp(VetorMinerais[i], "Terranita")==0){
-            Dureza = 0.7;
-            Reatividade = 0.6;
-            Cores = 4;
-        }
-         if(strcmp(VetorMinerais[i], "Calaris")==0){
-            Dureza = 0.6;
-            Reatividade = 0.5;
-            Cores = 5;
-        }
-        InicializaMineral(Mineral, Nome, Dureza, Reatividade, Cores);
+    if(strcmp(Nome, "Ferrolita")==0){
+        Dureza = 0.5;
+        Reatividade = 0.7;
+        Cores = 1;
     }
+    else if(strcmp(Nome, "Solarium")==0){
+        Dureza = 0.9;
+        Reatividade = 0.2;
+        Cores = 2;
+    }
+    else if(strcmp(Nome, "Aquavitae")==0){
+        Dureza = 0.5;
+        Reatividade = 0.8;
+        Cores = 3;
+    }
+    else if(strcmp(Nome, "Terranita")==0){
+        Dureza = 0.7;
+        Reatividade = 0.6;
+        Cores = 4;
+    }
+    else if(strcmp(Nome, "Calaris")==0){
+        Dureza = 0.6;
+        Reatividade = 0.5;
+        Cores = 5;
+    }
+    InicializaMineral(Mineral, Nome, Dureza, Reatividade, Cores);
 }
+
 void InicializaMineral(Minerais *Mineral, char* Nome, float Dureza, float Reatividade, Cor Cores){
     setNomeMineral(Mineral, Nome);
     setDureza(Mineral, Dureza);
