@@ -3,7 +3,7 @@
 #include <string.h>
 
 void PreencheMineral(Minerais *Mineral){
-    float Dureza, Reatividade;
+    double Dureza, Reatividade;
     Cor Cores;
     char* Nome;
     if(strcmp(Nome, "Ferrolita")==0){
@@ -34,7 +34,7 @@ void PreencheMineral(Minerais *Mineral){
     InicializaMineral(Mineral, Nome, Dureza, Reatividade, Cores);
 }
 
-void InicializaMineral(Minerais *Mineral, char* Nome, float Dureza, float Reatividade, Cor Cores){
+void InicializaMineral(Minerais *Mineral, char* Nome, double Dureza, double Reatividade, Cor Cores){
     setNomeMineral(Mineral, Nome);
     setDureza(Mineral, Dureza);
     setReatividade(Mineral, Reatividade);
@@ -48,17 +48,17 @@ char* getNomeMineral(Minerais *Mineral){
     return(Mineral->Nome);
 }
 
-void setDureza(Minerais *Mineral, float Dureza){
+void setDureza(Minerais *Mineral, double Dureza){
     Mineral->Dureza = Dureza;
 }
-float getDureza(Minerais *Mineral){
+double getDureza(Minerais *Mineral){
     return(Mineral->Dureza);
 }
 
-void setReatividade(Minerais *Mineral, float Reatividade){
+void setReatividade(Minerais *Mineral, double Reatividade){
     Mineral->Reatividade = Reatividade;
 }
-float getReatividade(Minerais *Mineral){
+double getReatividade(Minerais *Mineral){
     return(Mineral->Reatividade);
 }
 

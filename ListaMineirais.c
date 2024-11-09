@@ -20,8 +20,8 @@ int RetMineral(ListaMinerais* ListaM, char *Nomed, Minerais *MinRet){
         return 0;
     }
     int i = 0; int pos;
-    while(ListaM->listaminerais[i]!= NULL){
-        if (ListaM->listaminerais[i] == Nomed){
+    while(ListaM->listaminerais[i].Nome!= NULL){
+        if (ListaM->listaminerais[i].Nome == Nomed){
             *MinRet = ListaM->listaminerais[i];
             pos = i;
         }
@@ -35,7 +35,7 @@ int RetMineral(ListaMinerais* ListaM, char *Nomed, Minerais *MinRet){
 
 void ImprimeListaM(ListaMinerais* ListaM){
     int i = 0;
-    while (ListaM->listaminerais[i]!= NULL){
+    while (ListaM->listaminerais[i].Nome!= NULL){
         printf("%s\n", ListaM->listaminerais[i].Nome);
         printf("%.2f\n", ListaM->listaminerais[i].Reatividade);
         printf("%.2f", ListaM->listaminerais[i].Dureza);
