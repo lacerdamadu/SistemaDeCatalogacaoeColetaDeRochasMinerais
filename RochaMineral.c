@@ -93,6 +93,7 @@ void Coleta(RochaMineral* rocha, char* data){
     printf("\nPeso: %.2f", peso);
     printf("\nLatitude: %d", latitude);
     printf("\nLongitude: %d", longitude);
+    rintf("\n%s", data);
 
     strcpy(rocha->categoria, categoria);
     rocha->peso = peso;
