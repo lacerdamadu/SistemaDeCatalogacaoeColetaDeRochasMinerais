@@ -1,9 +1,19 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "ListaMinerais.h"
+#include "RochaMineral.h"
 
 int main(){
+
+   char data[10];
+
     ListaMinerais ListaT;
+    RochaMineral* rocha;
+
+    time_t mytime;
+    mytime = time(NULL);
+
     IniVListaM(&ListaT);
 
     char input[300];    
@@ -32,4 +42,7 @@ int main(){
 
 
     ImprimeListaM(&ListaT);
+
+    ListaMinerais listaM;
+    Coleta(&listaM, ctime(&mytime));
 }
