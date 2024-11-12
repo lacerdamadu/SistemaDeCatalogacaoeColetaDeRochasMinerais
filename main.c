@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "ListaMineirais.h"
+#include "ListaMinerais.h"
 
 int main(){
     ListaMinerais ListaT;
