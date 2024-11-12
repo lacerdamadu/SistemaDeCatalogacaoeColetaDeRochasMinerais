@@ -1,40 +1,47 @@
 #include <stdio.h>
-<<<<<<< HEAD
-#include "ListaMineirais.h"
-
-int main(){
-    ListaMinerais ListaT;
-    IniVListaM(&ListaT);
-=======
+#include <string.h>
+#include <time.h>
 #include "ListaMinerais.h"
 #include "RochaMineral.h"
-#include <time.h>
 
 int main(){
-    char data[10];
+
+   char data[10];
 
     ListaMinerais ListaT;
-    RochaMineral* rocha;
+    RochaMineral rocha;
 
     time_t mytime;
     mytime = time(NULL);
 
     IniVListaM(&ListaT);
 
->>>>>>> 45f4f07 (Rocha Mineral)
-    for(int i=0; i < 2; i++){
-        char nome[100];
-        scanf("%s", nome);
-        InsMineral(&ListaT, nome);
+    char input[300];
+    char nome[100];
+
+ // Variável para armazenar temporariamente cada nome
+    int i, j = 0;
+
+    printf("Digite ate tres nomes separados por espaços:\n");
+    fgets(input, sizeof(input), stdin);
+
+    for (i = 0; i < strlen(input); i++) {
+        if (input[i] == ' ' || input[i] == '\n' || input[i] == '\0') {
+            nome[j] = '\0'; // Finaliza a string nome
+            if (strlen(nome) > 0) { // Verifica se nome não está vazio
+                InsMineral(&ListaT, nome); // Chama a função preenchemineral
+                j = 0; // Reseta o índice de nome para o próximo nome
+            }
+            if (input[i] == '\n' || input[i] == '\0') {
+                break; // Sai do loop se encontrar o fim da linha ou da string
+            }
+        } else {
+            nome[j++] = input[i];
+        }
     }
-<<<<<<< HEAD
-    ImprimeListaM(&ListaT);
-}
-=======
+
 
     ImprimeListaM(&ListaT);
-    ListaMinerais listaM;
-    Coleta(&listaM, ctime(&mytime));
 
+    Coleta(&rocha, ctime(&mytime), &ListaT);
 }
->>>>>>> 45f4f07 (Rocha Mineral)
