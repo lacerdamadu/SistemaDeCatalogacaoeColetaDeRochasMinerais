@@ -3,6 +3,7 @@
 #include <time.h>
 #include "ListaMinerais.h"
 #include "RochaMineral.h"
+#define TSTRING 100
 
 int main(){
 
@@ -11,38 +12,42 @@ int main(){
     ListaMinerais ListaT;
     RochaMineral* rocha;
 
-    time_t mytime;
-    mytime = time(NULL);
 
     IniVListaM(&ListaT);
 
-    char input[300];    
-    char nome[100];
+    char minerais[TSTRING];    
+    char cadamineral[TSTRING]; 
 
- // Variável para armazenar temporariamente cada nome
+
     int i, j = 0;
 
-    printf("Digite até três nomes separados por espaços:\n");
-    fgets(input, sizeof(input), stdin);
+    fgets(minerais, sizeof(minerais), stdin);
 
-    for (i = 0; i < strlen(input); i++) {
-        if (input[i] == ' ' || input[i] == '\n' || input[i] == '\0') {
-            nome[j] = '\0'; // Finaliza a string nome
-            if (strlen(nome) > 0) { // Verifica se nome não está vazio
-                InsMineral(&ListaT, nome); // Chama a função preenchemineral
-                j = 0; // Reseta o índice de nome para o próximo nome
+
+    for (i = 0; i < strlen(minerais); i++) {
+        if (minerais[i] == ' ' || minerais[i] == '\n' || minerais[i] == '\0') {  
+            cadamineral[j] = '\0';       // Finaliza a string cadamineral
+            if (strlen(cadamineral) > 0) { // Verifica se cadamineral não está vazio
+                InsMineral(&ListaT, cadamineral); // Chama a função InsMineral passando nome por nome
+                j = 0; // Reseta o índice de cadamineral para o próximo cadamineral
             }
-            if (input[i] == '\n' || input[i] == '\0') {
+            if (minerais[i] == '\n' || minerais[i] == '\0') {
                 break; // Sai do loop se encontrar o fim da linha ou da string
             }
         } else {
-            nome[j++] = input[i];
+            cadamineral[j++] = minerais[i];
         }
     }
 
 
     ImprimeListaM(&ListaT);
 
+    time_t mytime;
+    mytime = time(NULL);
+
     ListaMinerais listaM;
+
     Coleta(&listaM, ctime(&mytime));
+
+    return 0;
 }
