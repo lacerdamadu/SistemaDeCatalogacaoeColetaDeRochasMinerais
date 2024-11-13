@@ -42,12 +42,12 @@ int main(){
 
     ImprimeListaM(&ListaT);
 
-    /*time_t mytime;
+    time_t mytime;
     mytime = time(NULL);
 
     ListaMinerais listaM;
 
-    Coleta(&listaM, ctime(&mytime));*/
+    Coleta(&listaM, ctime(&mytime));
 
     return 0;
 }
