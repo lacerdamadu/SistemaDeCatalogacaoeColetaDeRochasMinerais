@@ -67,8 +67,4 @@ void setCores(Minerais *Mineral, Cor Cores){
 }
 Cor getCores(Minerais *Mineral){
     return(Mineral->Cores);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 45f4f07 (Rocha Mineral)
