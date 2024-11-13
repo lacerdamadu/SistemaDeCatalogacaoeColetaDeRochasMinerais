@@ -12,9 +12,9 @@ void InsMineral(ListaMinerais* ListaM, char *NomeNov){
     PreencheMineral(&NovoM, NomeNov);
     ListaM->listaminerais[ListaM->Ultimo] = NovoM;
     ListaM->Ultimo++;
-} /*Não tratei pro caso da lista estar cheia,
-    porque obrigatoriamente só receberemos no
-    máximo três mineirais de entrada em cada lista*/
+} /*NÃ£o tratei pro caso da lista estar cheia,
+    porque obrigatoriamente sÃ³ receberemos no
+    mÃ¡ximo trÃªs mineirais de entrada em cada lista*/
 
 int RetMineral(ListaMinerais* ListaM, char *Nomed, Minerais *MinRet){
     if(ListaM->Ultimo == ListaM->Primeiro){
@@ -41,7 +41,7 @@ const char *tranformacor(Cor Cores){
   case Azulado: return "Azulado";
   case Marrom: return "Marrom";
   case Vermelho: return "Vermelho";
-  }
+  }   
 }
 
 void ImprimeListaM(ListaMinerais* ListaM){

@@ -3,45 +3,52 @@
 #include <time.h>
 #include "ListaMinerais.h"
 #include "RochaMineral.h"
+#define TSTRING 100
 
 int main(){
 
    char data[10];
 
     ListaMinerais ListaT;
-    RochaMineral rocha;
+    RochaMineral* rocha;
 
-    time_t mytime;
-    mytime = time(NULL);
 
     IniVListaM(&ListaT);
 
-    char input[300];
-    char nome[100];
+    char minerais[TSTRING];    
+    char cadamineral[TSTRING]; 
 
- // Vari·vel para armazenar temporariamente cada nome
+
     int i, j = 0;
 
-    printf("Digite ate tres nomes separados por espaÁos:\n");
-    fgets(input, sizeof(input), stdin);
+    fgets(minerais, sizeof(minerais), stdin);
 
-    for (i = 0; i < strlen(input); i++) {
-        if (input[i] == ' ' || input[i] == '\n' || input[i] == '\0') {
-            nome[j] = '\0'; // Finaliza a string nome
-            if (strlen(nome) > 0) { // Verifica se nome n„o est· vazio
-                InsMineral(&ListaT, nome); // Chama a funÁ„o preenchemineral
-                j = 0; // Reseta o Ìndice de nome para o prÛximo nome
+
+    for (i = 0; i < strlen(minerais); i++) {
+        if (minerais[i] == ' ' || minerais[i] == '\n' || minerais[i] == '\0') {  
+            cadamineral[j] = '\0';       // Finaliza a string cadamineral
+            if (strlen(cadamineral) > 0) { // Verifica se cadamineral n√£o est√° vazio
+                InsMineral(&ListaT, cadamineral); // Chama a fun√ß√£o InsMineral passando nome por nome
+                j = 0; // Reseta o √≠ndice de cadamineral para o pr√≥ximo cadamineral
             }
-            if (input[i] == '\n' || input[i] == '\0') {
+            if (minerais[i] == '\n' || minerais[i] == '\0') {
                 break; // Sai do loop se encontrar o fim da linha ou da string
             }
         } else {
-            nome[j++] = input[i];
+            cadamineral[j++] = minerais[i];
         }
     }
 
 
     ImprimeListaM(&ListaT);
 
-    Coleta(&rocha, ctime(&mytime), &ListaT);
+    time_t mytime;
+    mytime = time(NULL);
+
+    ListaMinerais listaM;
+
+    Coleta(&listaM, ctime(&mytime));
+
+    return 0;
 }
+
