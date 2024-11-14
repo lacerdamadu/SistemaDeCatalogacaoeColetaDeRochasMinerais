@@ -1,33 +1,53 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "Compartimento.h"
-#define TSTRING 100
+#include "Sonda.h"
 
-//void DigitaMineirais();
-
+#define STRING 100
 
 int main(){
+    char data[Data];
+    time_t mytime;
+    mytime = time(NULL);
+
+    int numsondas;
+    double lat_i, long_i;
+    int  c_i, v_i, vc_i, identificador;
+
+    scanf("%d", &numsondas);//A primeira entrada é o numero de sondas que irão ser inicializadas
+
+    //for(int i=0;i<numsondas;i++){
+        Sonda NovaSonda;
+        identificador = 1;
+        scanf("%lf %lf %d %d %d %d", &lat_i, &long_i, &c_i, &v_i, &vc_i);
+        InicializaSonda(NovaSonda, lat_i, long_i, c_i, vc_i, identificador);
+    //}
+
+    int numoperacoes;
+    char operacao;
+    double latrocha, longrocha, pesorocha; 
+    char mineral1[STRING];
+    char mineral2[STRING];
+    char mineral3[STRING];
+
+    scanf("%d", &numoperacoes);
+    ListaMinerais lista;
+    for(int i=0;i<numoperacoes;i++){
+        scanf("%c", &operacao);
+        if(operacao=='R'){
+            scanf("%lf %lf %d %s %s %s", &latrocha, &longrocha, &pesorocha, mineral1, mineral2, mineral3);
+            InsMineral(&lista, mineral1);
+            InsMineral(&lista, mineral2);
+            InsMineral(&lista, mineral3);
+            RochaMineral RochaTeste;
+            InicializaRocha(&RochaTeste, pesorocha, &lista, latrocha, longrocha, ctime(&mytime));
+            InsereRocha(&NovaSonda->Compartimento, &RochaTeste, c_i);
+        }
+    }
     
-    double PesoMax;
-
-    printf("Digite o peso maximo suportado: ");
-    scanf("%lf", &PesoMax);
-
-    int RochasColetadas;
-
-    printf("Digite a quantidade de Rochas coletadas: ");
-    scanf("%d", &RochasColetadas);
-
-    Compartimento CompartimentoTeste;
-
-    CriaListaRocha(&CompartimentoTeste, PesoMax);
-
-    ListaMinerais ListaT;
-    //RochaMineral* Rocha;   
     
 
-    for(int k = 0; k < RochasColetadas; k++){
+    /*for(int k = 0; k < RochasColetadas; k++){
         IniVListaM(&ListaT);
 
         char minerais[TSTRING];    
@@ -61,25 +81,10 @@ int main(){
         mytime = time(NULL);
 
         RochaMineral RochaTeste;
-
-        double Latitude, Longitude;
-        double Peso;
-
-        printf("Peso: ");
-        scanf("%lf", &Peso);
-
-        printf("Latitude: ");
-        scanf("%lf", &Latitude);
-
-        printf("Longitude: ");
-        scanf("%lf", &Longitude);
-
         InicializaRocha(&RochaTeste, Peso, &ListaT, Latitude, Longitude, ctime(&mytime));
         InsereRocha(&CompartimentoTeste, &RochaTeste, PesoMax);
-    }
+    }*/
 
-    ImprimiLista(&CompartimentoTeste);
-
-
+    ImprimiLista(&NovaSonda->Compartimento);
     return 0;
 }
