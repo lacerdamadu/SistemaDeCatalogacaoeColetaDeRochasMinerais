@@ -1,6 +1,7 @@
 #include "RochaMineral.h"
 #include "Compartimento.h"
 #include <stdio.h>
+#include <string.h>
 
 void CriaListaRocha(Compartimento *lista, double PesoMax){
     lista->primeiro = (Celula*) malloc(sizeof(Celula));
@@ -31,38 +32,38 @@ void ImprimiLista(Compartimento *lista){
     Celula* pAux;
     pAux = lista->primeiro->pProx;
     while (pAux != NULL){
-    printf("%d\n", pAux->rocha.categoria);
+    printf("%s\n", pAux->rocha.Categoria);
     pAux = pAux->pProx; /* próxima célula */
     }
 }
 
 double PesoAtual(Compartimento *lista){
-    double peso = 0;
+    double Peso = 0;
     if(VerificaListaVazia(lista)){
         return 0;
     }
     Celula* pAux;
     pAux = lista->primeiro->pProx;
     while (pAux != NULL){
-        peso += (pAux->rocha.peso);
+        Peso += (pAux->rocha.Peso);
         pAux = pAux->pProx;
     }
-    return peso;
+    return Peso;
 }
 
 void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
     Celula* pAux;
     pAux =  lista->primeiro->pProx;
-    while(strcmp(pAux->rocha.categoria, *rocha->categoria)!=0){
+    while(strcmp(pAux->rocha.Categoria, rocha->Categoria)!=0){
         pAux = pAux->pProx;
     }
-    (pAux->rocha.peso) = (rocha->peso);
+    (pAux->rocha.Peso) = (rocha->Peso);
 }
 
 int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax){
-    double peso = PesoAtual(lista);
-    peso += (rocha->peso);
-    if(peso>=PesoMax){
+    double Peso = PesoAtual(lista);
+    Peso += (rocha->Peso);
+    if(Peso>=PesoMax){
         return 0;
     }
     lista->ultimo->pProx = (Celula*) malloc(sizeof(Celula));
@@ -79,7 +80,7 @@ int RemoveRocha(Compartimento *lista, RochaMineral *rocha){
     Celula* pAux;
     Celula* pAux2;
     pAux = lista->primeiro->pProx;
-    while((strcmp(pAux->rocha.categoria),*rocha->categoria)!=0){
+    while((strcmp(pAux->rocha.Categoria,rocha->Categoria))!=0){
         pAux2 = pAux;
         pAux = pAux->pProx;
     }
