@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "Compartimento.h"
+#include "Sonda.h"
 #define TSTRING 100
 
 //void DigitaMineirais();
