@@ -63,7 +63,7 @@ void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
 int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax){
     double Peso = PesoAtual(lista);
     Peso += (rocha->Peso);
-    if(Peso>=PesoMax){
+    if(Peso>PesoMax){
         return 0;
     }
     lista->ultimo->pProx = (Celula*) malloc(sizeof(Celula));
