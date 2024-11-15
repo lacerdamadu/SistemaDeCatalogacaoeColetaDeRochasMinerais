@@ -19,8 +19,9 @@ int main(){
     //for(int i=0;i<numsondas;i++){
         Sonda NovaSonda;
         identificador = 1;
-        scanf("%lf %lf %d %d %d %d", &lat_i, &long_i, &c_i, &v_i, &vc_i);
-        InicializaSonda(NovaSonda, lat_i, long_i, c_i, vc_i, identificador);
+        printf("Informações da sonda:");
+        scanf("%lf %lf %d %d %d", &lat_i, &long_i, &c_i, &v_i, &vc_i);
+        InicializaSonda(&NovaSonda, lat_i, long_i, c_i, v_i, vc_i, identificador);
     //}
 
     int numoperacoes;
@@ -29,19 +30,21 @@ int main(){
     char mineral1[STRING];
     char mineral2[STRING];
     char mineral3[STRING];
-
+    printf("Numero de operacoes:");
     scanf("%d", &numoperacoes);
     ListaMinerais lista;
     for(int i=0;i<numoperacoes;i++){
+        printf("Operacao:");
         scanf("%c", &operacao);
         if(operacao=='R'){
+            printf("Informacoes rocha:");
             scanf("%lf %lf %d %s %s %s", &latrocha, &longrocha, &pesorocha, mineral1, mineral2, mineral3);
             InsMineral(&lista, mineral1);
             InsMineral(&lista, mineral2);
             InsMineral(&lista, mineral3);
             RochaMineral RochaTeste;
             InicializaRocha(&RochaTeste, pesorocha, &lista, latrocha, longrocha, ctime(&mytime));
-            InsereRocha(&NovaSonda->Compartimento, &RochaTeste, c_i);
+            InsereRocha(&NovaSonda.CompartmentoS, &RochaTeste, c_i);
         }
     }
     
@@ -85,6 +88,6 @@ int main(){
         InsereRocha(&CompartimentoTeste, &RochaTeste, PesoMax);
     }*/
 
-    ImprimiLista(&NovaSonda->Compartimento);
+    ImprimiLista(&NovaSonda.CompartmentoS);
     return 0;
 }
