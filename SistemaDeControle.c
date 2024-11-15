@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "SistemaDeControle.h"
-#define string = 100;
+#define maxtam = 100;
 #define str2 = 20;
 
 int LeituraPorArquivo(ListaDeSondas* lista){
@@ -13,17 +13,25 @@ int LeituraPorArquivo(ListaDeSondas* lista){
     }
     int numsondas;
     numsondas = fgetc(entrada);
-    char str[string];
+    char str[100];
     for(int i = 0; i<numsondas;i++){
         char *linha = fgets(str, 100, entrada);//Tentei definir o numero 100 como constante mas a função nao aceitou
         if(linha==NULL){
             printf("Erro ao ler a linha.");
         }
-        else{
+        else{//Separar a linha de acordo com os espaços
             int i=0;
-            char latitude[str2];
+            char latitude[20];
             while(str[i]!='\0'){
-                
+                latitude[i] = str[i];
+            }
+            char longitude[20];
+            while(str[i]!='\0'){
+                longitude[i] = str[i];
+            }
+            char c_i[20];
+            while(str[i]!='\0'){
+                latitude[i] = str[i];
             }
         }
     }
