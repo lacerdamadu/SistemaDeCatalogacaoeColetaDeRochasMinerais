@@ -60,10 +60,10 @@ void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
     (pCelulaDesejada->rocha.Peso) = (rocha->Peso);
 }
 
-int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax){
-    double Peso = PesoAtual(lista);
+int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax){
+    int Peso = PesoAtual(lista);
     Peso += (rocha->Peso);
-    if(Peso>=PesoMax){
+    if(Peso>PesoMax){
         return 0;
     }
     lista->ultimo->pProx = (Celula*) malloc(sizeof(Celula));
