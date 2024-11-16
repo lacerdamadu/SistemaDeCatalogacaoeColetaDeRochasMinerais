@@ -1,20 +1,14 @@
 #include "Compartimento.h"
+#include "Sonda.h"
 
 typedef struct {
-    int Identificador;
-    Compartimento compartimentos;
-    double Latitude;
-    double Longitude;
-    int EstaLigada;
-    int Velocidade;
-    int Combustivel;
-    int PesoMax;
+    Sonda sonda
 } TSonda;
 
 typedef struct Celula_S* Apontador;
 
 typedef struct Celula_S {
-    TSonda Sonda;
+    TSonda Sondas;
     struct Celula* pProx;
 } TCelula_S;
 
