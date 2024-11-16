@@ -3,7 +3,9 @@
 #include "SistemaDeControle.h"
 
 int main(){
-    ListaDeSondas lista;
+    TSondas lista;
     Central(&lista);
     return 0;
-}   
+}
+
+

@@ -11,7 +11,8 @@ void FazListaVazia(TSondas* sonda)
      sonda->pPrimeiro->pProx = NULL;
 }
 
-void Insere(TSondas* Sondas,TSonda* sonda){
+void Insere(TSondas* Sondas, Sonda* sonda){
+
      Sondas->pUltimo->pProx = (Apontador) malloc(sizeof(TCelula_S));
      Sondas->pUltimo = Sondas->pUltimo->pProx;
      Sondas->pUltimo->Sonda = *sonda;
@@ -22,7 +23,6 @@ int Retira(TSondas* Sondas, int retirar){
     TCelula_S* pAux;
     pAux = Sondas->pPrimeiro;
     TCelula_S* p_anterior = NULL;
-
     while (pAux != NULL){
         if (pAux->Sonda.Identificador == retirar){
             if (p_anterior == NULL){

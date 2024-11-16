@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-void InicializaRocha(RochaMineral* Rocha, double Peso, ListaMinerais *ListaMin, double Latitude, double Longitude, char* DataC){
+
+void InicializaRocha(RochaMineral* Rocha, double Peso, ListaMinerais ListaMin, double Latitude, double Longitude, char DataC){
     
     ClassificaRocha(Rocha, ListaMin);
 
@@ -146,12 +147,15 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
         if ((strcmp(ListaMin->listaminerais[i].Nome, "Calaris") == 0)){
             calaris = 1;
         }
+
    }   
+
 
     //printf("%d %d %d %d %d\n", ferrolita, solarium, aquavitae, calaris, terranita);
 
    if(ferrolita && !solarium && !aquavitae && !calaris && !terranita){
         strcpy(categoria, "Ferrom");
+
    } 
    
    else if (!ferrolita && solarium && !aquavitae && !calaris && !terranita){
@@ -222,9 +226,11 @@ double getLongitude(RochaMineral *Rocha){
     return(Rocha->Longitude);
 }
 
-void setData(RochaMineral *Rocha, char* DataC){
+void setData(RochaMineral Rocha, char DataC){
+
     strcpy(Rocha->DataC, DataC);
 }
 char* getData(RochaMineral *Rocha){
     return(Rocha->DataC);
+
 }
