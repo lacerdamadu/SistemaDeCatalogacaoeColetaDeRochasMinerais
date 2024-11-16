@@ -1,5 +1,4 @@
 #include "ListaSondas.h"
-#include "Compartimento.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -52,7 +51,7 @@ void Imprime(TSondas* Sonda, Sonda* sonda) {
         printf("Identificador: %d\n", pAux->Sonda.Identificador);
         printf("Latitude: %d\n", pAux->Sonda.Latitude);
         printf("Longitude: %d\n", pAux->Sonda.Longitude);
-        printf("Peso: %d\n", pAux->Sonda.Compartimento->PesoMax);
+        printf("Peso: %d\n", pAux->Sonda.CompartmentoS.PesoMax);
         printf("Velocidade: %d\n", pAux->Sonda.Velocidade);
         printf("Ligado: %d\n", pAux->Sonda.EstaLigada);
         printf("Combustivel: %d\n", pAux->Sonda.Combustivel);
