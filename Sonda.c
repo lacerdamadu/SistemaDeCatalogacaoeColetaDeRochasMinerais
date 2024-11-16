@@ -33,3 +33,7 @@ double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude/*, int Veloc
     SondaMov->Longitude = Longitude;
     
 }
+
+double CalculaDist(Sonda SondaMov){
+    
+}

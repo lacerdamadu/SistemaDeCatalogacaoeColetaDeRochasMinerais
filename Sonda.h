@@ -22,4 +22,6 @@ void DesligaSonda(Sonda *Sondalig);
 
 double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude/*, int Velocidade, int Combustivel*/);
 
+double CalculaDist(Sonda SondaMov);
+
 #endif
