@@ -7,7 +7,7 @@ void InicializaSonda(Sonda *NovaSonda, double Latitude, double Longitude,
     NovaSonda->Latitude = Latitude;
     NovaSonda->Longitude = Longitude;
     NovaSonda->EstaLigada = 0;
-    NovaSonda->PesoMax = PesoMax;
+    CriaListaRocha(&NovaSonda->Compartimentos, PesoMax);
     NovaSonda->Velocidade = Velocidade;
     NovaSonda->Combustivel = Combustivel;
     NovaSonda->Identificador = Identificador;
