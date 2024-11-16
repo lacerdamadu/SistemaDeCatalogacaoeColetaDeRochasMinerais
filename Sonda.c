@@ -1,5 +1,4 @@
 #include "Sonda.h"
-
 #include <stdio.h>
 #include <string.h>
 
@@ -8,7 +7,7 @@ void InicializaSonda(Sonda *NovaSonda, double Latitude, double Longitude,
     NovaSonda->Latitude = Latitude;
     NovaSonda->Longitude = Longitude;
     NovaSonda->EstaLigada = 0;
-    CriaListaRocha(&NovaSonda->CompartmentoS, PesoMax);
+    NovaSonda->PesoMax = PesoMax;
     NovaSonda->Velocidade = Velocidade;
     NovaSonda->Combustivel = Combustivel;
     NovaSonda->Identificador = Identificador;
@@ -28,8 +27,8 @@ double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude/*, int Veloc
     if (!SondaMov->EstaLigada){
         LigaSonda(SondaMov);
     }
-    
+
     SondaMov->Latitude = Latitude;
     SondaMov->Longitude = Longitude;
-    
+
 }

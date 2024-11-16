@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void CriaListaRocha(Compartimento *lista, int PesoMax){
+void CriaListaRocha(Compartimento* lista, int PesoMax){
     lista->primeiro = (Celula*) malloc(sizeof(Celula));
     lista->ultimo = lista->primeiro;
     lista->primeiro->pProx = NULL;
@@ -15,11 +15,11 @@ int TamanhoListaRocha(Compartimento *lista){
     if (VerificaListaVazia(lista)){
         return 0;
     }
-    Celula* pCelulaDesejada;
-    pCelulaDesejada = lista->primeiro->pProx;
-    while(pCelulaDesejada!=NULL){
+    Celula* pAux;
+    pAux = lista->primeiro->pProx;
+    while(pAux!=NULL){
         contador ++;
-        pCelulaDesejada = pCelulaDesejada->pProx;
+        pAux = pAux->pProx;
     }
     return contador;
 }
@@ -29,11 +29,11 @@ int VerificaListaVazia(Compartimento *lista){
 }
 
 void ImprimiLista(Compartimento *lista){
-    Celula* pCelulaDesejada;
-    pCelulaDesejada = lista->primeiro->pProx;
-    while (pCelulaDesejada != NULL){
-    printf("%s\n", pCelulaDesejada->rocha.Categoria);
-    pCelulaDesejada = pCelulaDesejada->pProx; /* próxima célula */
+    Celula* pAux;
+    pAux = lista->primeiro->pProx;
+    while (pAux != NULL){
+    printf("%s\n", pAux->rocha.Categoria);
+    pAux = pAux->pProx; /* próxima célula */
     }
 }
 
@@ -42,22 +42,22 @@ double PesoAtual(Compartimento *lista){
     if(VerificaListaVazia(lista)){
         return 0;
     }
-    Celula* pCelulaDesejada;
-    pCelulaDesejada = lista->primeiro->pProx;
-    while (pCelulaDesejada != NULL){
-        Peso += (pCelulaDesejada->rocha.Peso);
-        pCelulaDesejada = pCelulaDesejada->pProx;
+    Celula* pAux;
+    pAux = lista->primeiro->pProx;
+    while (pAux != NULL){
+        Peso += (pAux->rocha.Peso);
+        pAux = pAux->pProx;
     }
     return Peso;
 }
 
 void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
-    Celula* pCelulaDesejada;
-    pCelulaDesejada =  lista->primeiro->pProx;
-    while(strcmp(pCelulaDesejada->rocha.Categoria, rocha->Categoria)!=0){
-        pCelulaDesejada = pCelulaDesejada->pProx;
+    Celula* pAux;
+    pAux =  lista->primeiro->pProx;
+    while(strcmp(pAux->rocha.Categoria, rocha->Categoria)!=0){
+        pAux = pAux->pProx;
     }
-    (pCelulaDesejada->rocha.Peso) = (rocha->Peso);
+    (pAux->rocha.Peso) = (rocha->Peso);
 }
 
 int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax){
@@ -73,19 +73,19 @@ int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax){
     return 1;
 }
 
-int RemoveRocha(Compartimento *lista, char* nomerocha){
+int RemoveRocha(Compartimento *lista, RochaMineral *rocha){
     if (VerificaListaVazia(lista)){
         return 0;
     }
-    Celula* pDesejada;
-    Celula* pAnterior;
-    pDesejada = lista->primeiro->pProx;
-    while((strcmp(pDesejada->rocha.Categoria,nomerocha))!=0){
-        pAnterior = pDesejada;
-        pDesejada = pDesejada->pProx;
+    Celula* pAux;
+    Celula* pAux2;
+    pAux = lista->primeiro->pProx;
+    while((strcmp(pAux->rocha.Categoria,rocha->Categoria))!=0){
+        pAux2 = pAux;
+        pAux = pAux->pProx;
     }
-    Celula* pAux = pDesejada;
-    pAnterior->pProx = pDesejada->pProx;
-    free(pAux);
+    Celula* pAux3 = pAux;
+    pAux2->pProx = pAux->pProx;
+    free(pAux3);
     return 1;
 }
