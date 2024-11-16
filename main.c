@@ -2,7 +2,10 @@
 #include <string.h>
 #include <time.h>
 #include "Sonda.h"
+#include "Compartimento.h"
+#include "RochaMineral.h"
 #include "ListaSondas.h"
+#include "Minerais.h"
 #define TSTRING 100
 
 int main(){
@@ -56,7 +59,8 @@ int main(){
     for(int i; i<n_op; i++){
         //RochaMineral* Rocha;
         char operacao;
-        scanf(" %c", operacao);
+        printf("Tipo de operacao: ");
+        scanf(" %c", &operacao);
         if(operacao == 'R'){
             IniVListaM(&ListaM);
             char minerais[TSTRING];
@@ -67,7 +71,6 @@ int main(){
 
             getchar();
             fgets(minerais, sizeof(minerais), stdin);
-
 
             for (i = 0; i < strlen(minerais); i++) {
                 if (minerais[i] == ' ' || minerais[i] == '\n' || minerais[i] == '\0') {
@@ -105,8 +108,6 @@ int main(){
                 InicializaRocha(&RochaTeste, Peso, &ListaT, Latitude, Longitude, ctime(&mytime));
                 InsereRocha(&CompartimentoTeste, &RochaTeste, &sonda);
                 CriaListaRocha(&CompartimentoTeste, pesos[i]);
-            } else if(operacao == 'I'){
-
             }
         }
 
