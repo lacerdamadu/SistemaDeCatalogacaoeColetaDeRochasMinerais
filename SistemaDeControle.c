@@ -80,7 +80,7 @@ int LeituraPorArquiv(TSondas *lista){
                 InsMineral(&listaa, mineral3);
             }
             RochaMineral RochaTeste;
-            InicializaRocha(&RochaTeste, pesorocha, listaa, latrocha, longrocha, ctime(&mytime));
+            InicializaRocha(&RochaTeste, pesorocha, lista, latrocha, longrocha, ctime(&mytime));
             break;
         case 'I':
             ImprimiListaSondas(lista);
@@ -181,7 +181,7 @@ int LeituraPeloTerminal(TSondas *lista){
                 InsMineral(&listaa, mineral3);
             }
             RochaMineral RochaTeste;
-            InicializaRocha(&RochaTeste, pesorocha, listaa, latrocha, longrocha, ctime(&mytime));
+            InicializaRocha(&RochaTeste, pesorocha, lista, latrocha, longrocha, ctime(&mytime));
             //InsereRocha(&NovaSonda.CompartmentoS, &RochaTeste, c_i);
             printf("Deseja realizar outra operacao?(s/n)");
             char res2;
