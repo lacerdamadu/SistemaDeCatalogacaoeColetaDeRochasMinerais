@@ -1,5 +1,4 @@
 #include "ListaSondas.h"
-#include "Compartimento.h"
 #include "Sonda.h"
 #include <stdio.h>
 #include <string.h>
