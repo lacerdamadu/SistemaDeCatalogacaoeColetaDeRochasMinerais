@@ -3,7 +3,6 @@
 
 #include "Sonda.h"
 
-
 typedef struct Celula_S* Apontador;
 
 typedef struct Celula_S {
