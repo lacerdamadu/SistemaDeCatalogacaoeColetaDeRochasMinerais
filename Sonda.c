@@ -1,4 +1,5 @@
 #include "Sonda.h"
+#include "Compartimento.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -7,7 +8,7 @@ void InicializaSonda(Sonda *NovaSonda, double Latitude, double Longitude,
     NovaSonda->Latitude = Latitude;
     NovaSonda->Longitude = Longitude;
     NovaSonda->EstaLigada = 0;
-    CriaListaRocha(&NovaSonda->Compartimentos, PesoMax);
+    CriaListaRocha(&NovaSonda->compartimentos, PesoMax);
     NovaSonda->Velocidade = Velocidade;
     NovaSonda->Combustivel = Combustivel;
     NovaSonda->Identificador = Identificador;
