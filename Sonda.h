@@ -1,16 +1,16 @@
 #ifndef SONDA_H_
 #define SONDA_H_
-
 #include "Compartimento.h"
 
 typedef struct {
     int Identificador;
-    Compartimento CompartmentoS;
+    Compartimento compartimentos;
     double Latitude;
     double Longitude;
     int EstaLigada;
     int Velocidade;
     int Combustivel;
+    int PesoMax;
 } Sonda;
 
 void InicializaSonda(Sonda *NovaSonda, double Latitude, double Longitude,
