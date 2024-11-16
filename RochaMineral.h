@@ -12,6 +12,7 @@ typedef struct{
     char DataC[Data];
 } RochaMineral;
 
+
 void InicializaRocha(RochaMineral* rocha, double Peso, ListaMinerais ListaMin, double Latitude, double Longitude, char data);
 
 void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin);
@@ -26,6 +27,7 @@ double getLatitude(RochaMineral *Rocha);
 
 void setLongitude(RochaMineral *Rocha, double Longitude);
 double getLongitude(RochaMineral *Rocha);
+
 
 void setData(RochaMineral Rocha, char DataC);
 char* getData(RochaMineral *Rocha);

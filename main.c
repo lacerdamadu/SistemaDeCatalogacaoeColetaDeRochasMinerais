@@ -6,7 +6,6 @@ int main(){
     ListaDeSondas lista;
     Central(&lista);
     return 0;
-
 }
 
 
