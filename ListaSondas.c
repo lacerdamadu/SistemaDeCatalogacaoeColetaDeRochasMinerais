@@ -11,7 +11,7 @@ void FazListaVazia(TSondas* sonda)
      sonda->pPrimeiro->pProx = NULL;
 }
 
-void Insere(TSondas* Sondas,TSonda* sonda)
+void Insere(TSondas* Sondas, Sonda* sonda)
 {
      Sondas->pUltimo->pProx = (Apontador) malloc(sizeof(TCelula_S));
      Sondas->pUltimo = Sondas->pUltimo->pProx;
@@ -49,7 +49,7 @@ void Imprime(TSondas* Sondas)
      pAux = Sondas->pPrimeiro->pProx;
  while (pAux != NULL)
  {
-     printf("%d\n", pAux->Sonda.compartimentos);
+     printf("%d\n", pAux->Sonda.CompartmentoS);
      pAux = pAux->pProx;
  }
 }

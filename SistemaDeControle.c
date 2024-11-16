@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include "ListaSondas.h"
 #include "SistemaDeControle.h"
 
 #define STRING 100
@@ -9,7 +11,7 @@ void Central(){
     printf("Bem-vindo(a) ao Sistema de Controle e Catalogação de Rochas Minerais!\n");
     printf("Como voce deseja realizar a entrada de dados?\n");
     printf("(1)Arquivo.\n(2)Terminal.\n");
-    ListaDeSondas lista;
+    TSondas lista;
     int escolha;
     scanf("%d", &escolha);
     switch (escolha){
@@ -19,17 +21,23 @@ void Central(){
         case 2:
             LeituraPeloTerminal(&lista);
             break;
+        default:
+            break;
     }
 }
 
 
-int LeituraPorArquivo(ListaDeSondas *lista){
+int LeituraPorArquiv(TSondas *lista){
     char data[Data];
     time_t mytime;
     mytime = time(NULL);
 
+    printf("Digite o nome do arquivo: ");
+    char nome[STRING];
+    scanf("%s", nome);
+
     FILE* entrada;
-    entrada = fopen("DocumentodeTeste1.pdf", "r");
+    entrada = fopen(nome, "r");
     if(entrada==NULL){
         printf("Erro ao ler o arquivo.");
         return 0;
@@ -40,7 +48,7 @@ int LeituraPorArquivo(ListaDeSondas *lista){
     int  c_i, v_i, vc_i, identificador;
 
     fscanf(entrada,"%d", &numsondas);
-    InicializaListaSondas(controle->lista);
+    InicializaListaSondas(lista);
     for(int i = 0; i<numsondas;i++){
         Sonda NovaSonda;
         identificador = 1;
@@ -61,7 +69,7 @@ int LeituraPorArquivo(ListaDeSondas *lista){
         fscanf(entrada, "%c", operacao);
         switch (operacao){
         case 'R':
-            scanf(entrada,"%lf %lf %d %s %s %s", &latrocha, &longrocha, &pesorocha, mineral1, mineral2, mineral3);
+            fscanf(entrada,"%lf %lf %d %s %s %s", &latrocha, &longrocha, &pesorocha, mineral1, mineral2, mineral3);
             if(strcmp(mineral1, "/n")!=0){
                 InsMineral(&listaa, mineral1);
             }
@@ -72,8 +80,7 @@ int LeituraPorArquivo(ListaDeSondas *lista){
                 InsMineral(&listaa, mineral3);
             }
             RochaMineral RochaTeste;
-            InicializaRocha(&RochaTeste, pesorocha, &lista, latrocha, longrocha, ctime(&mytime));
-            InsereRocha(&NovaSonda.CompartmentoS, &RochaTeste, c_i);
+            InicializaRocha(&RochaTeste, pesorocha, listaa, latrocha, longrocha, ctime(&mytime));
             break;
         case 'I':
             ImprimiListaSondas(lista);
@@ -88,7 +95,7 @@ int LeituraPorArquivo(ListaDeSondas *lista){
 }
 
 
-int LeituraPeloTerminal(ListaDeSondas *lista){
+int LeituraPeloTerminal(TSondas *lista){
     char data[Data];
     time_t mytime;
     mytime = time(NULL);
@@ -174,7 +181,7 @@ int LeituraPeloTerminal(ListaDeSondas *lista){
                 InsMineral(&listaa, mineral3);
             }
             RochaMineral RochaTeste;
-            InicializaRocha(&RochaTeste, pesorocha, &lista, latrocha, longrocha, ctime(&mytime));
+            InicializaRocha(&RochaTeste, pesorocha, listaa, latrocha, longrocha, ctime(&mytime));
             //InsereRocha(&NovaSonda.CompartmentoS, &RochaTeste, c_i);
             printf("Deseja realizar outra operacao?(s/n)");
             char res2;
@@ -217,6 +224,6 @@ int LeituraPeloTerminal(ListaDeSondas *lista){
     return 0;
 }
 
-void RedistribuiçãodeRochas(ListaDeSondas *lista){
+void RedistribuiçãodeRochas(TSondas *lista){
 
 }
