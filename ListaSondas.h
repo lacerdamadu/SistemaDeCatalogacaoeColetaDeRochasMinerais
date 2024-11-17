@@ -2,7 +2,7 @@
 #include "Sonda.h"
 
 typedef struct {
-    Sonda sonda
+    Sonda sonda;
 } TSonda;
 
 typedef struct Celula_S* Apontador;
