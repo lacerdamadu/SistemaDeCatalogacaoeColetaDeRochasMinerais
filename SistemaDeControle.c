@@ -68,6 +68,7 @@ int LeituraPorArquivo(TSondas *lista){
     
     fscanf(entrada,"%d", &numoperacoes);
     ListaMinerais listaa;
+    IniVListaM(&listaa);
     for(int i=0;i<numoperacoes;i++){
 
         double Distancias[numsondas];
@@ -89,7 +90,7 @@ int LeituraPorArquivo(TSondas *lista){
             RochaMineral RochaTeste;
             InicializaRocha(&RochaTeste, pesorocha, &listaa, 
              latrocha, longrocha, ctime(&mytime)); /*Inicializa uma rocha nova a 
-                                                                            partir da linha do arquivo*/
+                                                    partir da linha do arquivo*/
             
             
 
@@ -164,15 +165,24 @@ int LeituraPeloTerminal(TSondas *lista){
             double lat_i, long_i;
             int  c_i, v_i, nc_i, identificador = 1;
             printf("Digite as informações da sonda:\n");
-            //getchar();
+            getchar();
+
             printf("Latitude:");
             scanf("%lf", &lat_i);
+            getchar();
+            
+        
             printf("Longitude:");
             scanf("%lf", &long_i);
+            getchar();
+            printf("%lf", long_i);
+           
             printf("Capacidade de armazenamento em kg:");
             scanf("%d", &c_i);
+
             printf("Velocidade:");
             scanf("%d", &v_i);
+
             printf("Nivel de combustível:");
             scanf("%d", &nc_i);
 
@@ -208,44 +218,63 @@ int LeituraPeloTerminal(TSondas *lista){
             LeituraPeloTerminal(lista);
         }
         else{
+            ListaMinerais listaa;
+            IniVListaM(&listaa);
             printf("Esta operacao irá criar uma nova rocha de acordo com os atributos digitados.\n"
             "Alem de adicioná-la na sonda mais próxima ou que ja tenha uma amostra do mesmo tipo de rocha.\n"
             "Concorda em prosseguir?(s/n)\n");
             getchar();
             char res6;
-            scanf("%c", res6);
+            scanf("%c", &res6);
             if(res6 == 's'){
+                printf("entrou\n");
                 ListaMinerais listaa;
                 double latrocha, longrocha;
                 int pesorocha; 
-                char mineral1[STRING];
-                char mineral2[STRING];
-                char mineral3[STRING];
+        
 
                 printf("Digite as informações da rocha:\n");
                 printf("Latitude:");
                 scanf("%lf", &latrocha);
+                getchar();
+
                 printf("Longitude:");
                 scanf("%lf", &longrocha);
+                getchar();
+
                 printf("Peso da rocha:");
                 scanf("%d", &pesorocha);
-                printf("Minerais que formam a rocha:");
-                scanf("%s %s %s", mineral1, mineral2, mineral3);
-                if(strcmp(mineral1, "/n")!=0){
-                    InsMineral(&listaa, mineral1);
-                }
-                if(strcmp(mineral2, "/n")!=0){
-                    InsMineral(&listaa, mineral2);
-                }
-                if(strcmp(mineral3, "/n")!=0){
-                    InsMineral(&listaa, mineral3);
-                }
+             
 
+                char TodosMinerais[300];
+                char nome[100];
+                int i, j = 0;
+                printf("Digite até três minerais separados por espaços:\n");
+                getchar();
+                fgets(TodosMinerais, sizeof(TodosMinerais), stdin);
+                printf("%s", TodosMinerais);
+                for (i = 0; i < strlen(TodosMinerais); i++) {
+                    if (TodosMinerais[i] == ' ' || TodosMinerais[i] == '\n' || TodosMinerais[i] == '\0') {
+                        nome[j] = '\0'; 
+                    
+                        if (strlen(nome) > 0) { 
+                            printf("%s", nome);
+                            InsMineral(&listaa, nome);
+                            j = 0; 
+                        }
+                        if (TodosMinerais[i] == '\n' || TodosMinerais[i] == '\0') {
+                            break;
+                        }
+                    } 
+                    else {
+                        nome[j++] = TodosMinerais[i];
+                    }
+                ImprimeListaM(&listaa);
                 RochaMineral RochaTeste;
                 InicializaRocha(&RochaTeste, pesorocha, &listaa,
                 latrocha, longrocha, ctime(&mytime));  /*Inicializa uma rocha nova a 
                                                                                 partir do que o usuÃ¡rio digita*/
-
+                printf("%s", RochaTeste.Categoria);
                 double Distancias[numsondas];       /*Vetor para armazenar as distÃ¢ncias das sondas em relaÃ§Ã£o Ã  rocha*/
 
                 Apontador AuxLis = lista->pPrimeiro;
@@ -288,17 +317,19 @@ int LeituraPeloTerminal(TSondas *lista){
                     return 0;
                 }   
             }
+            }
         else{
             LeituraPeloTerminal(lista);
         }
     }
+        break;
     case 4:
         printf("Esta opercação ira imprimir as informações das rochas coletadas até o momento,\n"
         "além da identificação de qual sonda ela está armazenda.\n"
         "Concorda em prosseguir?\n");
         getchar();
         char res5;
-        scanf("%c", res5);
+        scanf("%c", &res5);
         if(res5 == 's'){
             ImprimeSonda(lista);
             printf("Deseja realizar outra operação?(s/n)\n");
@@ -321,7 +352,7 @@ int LeituraPeloTerminal(TSondas *lista){
         "Concorda em prosseguir?\n");
         getchar();
         char res4;
-        scanf("%c", res4);
+        scanf("%c", &res4);
 
         if(res=='s'){
             RedistribuiRochas(lista, numsondas);

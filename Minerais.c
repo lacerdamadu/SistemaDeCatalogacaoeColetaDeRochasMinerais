@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 
-void PreencheMineral(Minerais *Mineral, char *Nome){
+void PreencheMineral(Minerais *Mineral, char *Nome){/*Esta função recebe o nome de um Mineral e 
+                                                    de acordo com essa informação ela preenche os campos Dureza,
+                                                    Reatividade e Cor.*/
     double Dureza, Reatividade;
     Cor Cores;
     if(strcmp(Nome, "Ferrolita")==0){

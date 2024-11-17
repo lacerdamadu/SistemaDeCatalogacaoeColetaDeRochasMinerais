@@ -2,7 +2,7 @@
 #define MINERAIS_H_
 #define max_tam 100
 
-typedef enum{
+typedef enum{//Possíveis cores de um Mineral
     Acizentado,
     Amarelo,
     Azulado,

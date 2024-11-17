@@ -80,7 +80,7 @@ RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
     }
     Celula* pAux;
     Celula* pAux2;
-    pAux = lista->primeiro->pProx;
+    pAux = lista->primeiro->pProx;//Primeira rocha da lista
     while((strcmp(pAux->rocha.Categoria,rocha->Categoria))!=0){
         pAux2 = pAux;
         pAux = pAux->pProx;

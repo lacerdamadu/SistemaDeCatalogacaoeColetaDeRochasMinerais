@@ -1,7 +1,9 @@
 #ifndef SISTEMADECONTROLE_H_
 #define SISTEMADECONTROLE_H_
+#define PESOMAXIMO 10000
 #define STRING 100
 #define Data 11
+
 
 #include "ListaSondas.h"
 

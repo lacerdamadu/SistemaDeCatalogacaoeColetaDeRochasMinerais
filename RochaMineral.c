@@ -107,6 +107,7 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
 }
 
 void ImprimeRocha(RochaMineral *Rocha){
+    printf("entrou\n");
     printf("\nCategoria: %s", Rocha->Categoria);
     printf("\nPeso: %.2lf", Rocha->Peso);
     printf("\nLatitude: %lf", Rocha->Latitude);
