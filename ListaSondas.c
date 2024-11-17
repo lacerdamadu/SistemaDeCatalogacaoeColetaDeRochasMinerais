@@ -51,13 +51,14 @@ void Imprime(TSondas* Sondas, TSonda* sonda) {
     }
     while (pAux != NULL) {
         printf("Identificador: %d\n", pAux->Sondas.sonda.Identificador);
-        printf("Latitude: %d\n", pAux->Sondas.sonda.Latitude);
-        printf("Longitude: %d\n", pAux->Sondas.sonda.Longitude);
+        printf("Latitude: %lf\n", pAux->Sondas.sonda.Latitude);
+        printf("Longitude: %lf\n", pAux->Sondas.sonda.Longitude);
         printf("Peso: %d\n", pAux->Sondas.sonda.PesoMax);
         printf("Velocidade: %d\n", pAux->Sondas.sonda.Velocidade);
         printf("Ligado: %d\n", pAux->Sondas.sonda.EstaLigada);
         printf("Combustivel: %d\n", pAux->Sondas.sonda.Combustivel);
         printf("Compartimentos: %d\n", pAux->Sondas.sonda.compartimentos);
+        printf("\n");
         pAux = pAux->pProx;
     }
 }
