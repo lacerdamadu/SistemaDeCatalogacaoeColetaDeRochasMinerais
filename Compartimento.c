@@ -2,6 +2,7 @@
 #include "Compartimento.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void CriaListaRocha(Compartimento* lista, int PesoMax){
     lista->primeiro = (Celula*) malloc(sizeof(Celula));
@@ -73,7 +74,7 @@ int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax){
     return 1;
 }
 
-int RemoveRocha(Compartimento *lista, RochaMineral *rocha){
+RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
     if (VerificaListaVazia(lista)){
         return 0;
     }
@@ -84,9 +85,8 @@ int RemoveRocha(Compartimento *lista, RochaMineral *rocha){
         pAux2 = pAux;
         pAux = pAux->pProx;
     }
-    Celula* pAux3 = pAux;
+    RochaMineral* pAux3 = &pAux->rocha;
     pAux2->pProx = pAux->pProx;
-    free(pAux3);
-    return 1;
+    return pAux3;
 }
 

@@ -20,6 +20,6 @@ void ImprimiLista(Compartimento *lista);//Exibe todo o conteudo do compartimento
 double PesoAtual(Compartimento *lista);//Retorna o peso total do compartimento/lista
 void TrocaRocha(Compartimento *lista, RochaMineral *rocha);//Adiciona uma rocha mais leve no lugar da rocha mais pesada do mesmo tipo
 int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax);//Insere uma rocha encontrada no final da lista, seguindo as regras
-int RemoveRocha(Compartimento *lista, char* nomerocha);//Remove a rocha de acordo com a categoria(nome)
+RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha);//Remove a rocha de acordo com a categoria(nome)
 
 #endif

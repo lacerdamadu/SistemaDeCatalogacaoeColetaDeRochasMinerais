@@ -7,7 +7,7 @@ typedef struct Celula_S* Apontador;
 
 typedef struct Celula_S {
     Sonda Sonda;
-    struct Celula* pProx;
+    struct Celula_S* pProx;
 } TCelula_S;
 
 
@@ -17,9 +17,8 @@ typedef struct {
 } TSondas;
 
 void FazListaVazia(TSondas* Sondas);
-void Insere(TSondas* Sondas, Sonda* sonda);
-int Retira(TSondas* Sondas, int retirar);
-void Imprime(TSondas* Sonda, Sonda* sonda);
+void InsereSonda(TSondas* Sondas, Sonda* sonda);
+int RetiraSonda(TSondas* Sondas, int retirar);
+void ImprimeSonda(TSondas* Sondas);
  
 #endif
-

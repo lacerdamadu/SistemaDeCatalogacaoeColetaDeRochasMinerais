@@ -4,6 +4,7 @@
 
 int main(){
     TSondas lista;
+    FazListaVazia(&lista);
     Central(&lista);
     return 0;
 }

@@ -20,8 +20,8 @@ void LigaSonda(Sonda *SondaDes);
 
 void DesligaSonda(Sonda *Sondalig);
 
-double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude/*, int Velocidade, int Combustivel*/);
+double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude);
 
-double CalculaDist(Sonda SondaMov);
+double CalculaDist(Sonda Sonda, RochaMineral Rocha);
 
 #endif

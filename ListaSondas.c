@@ -10,7 +10,7 @@ void FazListaVazia(TSondas* sonda)
      sonda->pPrimeiro->pProx = NULL;
 }
 
-void Insere(TSondas* Sondas, Sonda* sonda){
+void InsereSonda(TSondas* Sondas, Sonda* sonda){
 
      Sondas->pUltimo->pProx = (Apontador) malloc(sizeof(TCelula_S));
      Sondas->pUltimo = Sondas->pUltimo->pProx;
@@ -18,7 +18,7 @@ void Insere(TSondas* Sondas, Sonda* sonda){
      Sondas->pUltimo->pProx = NULL;
 }
 
-int Retira(TSondas* Sondas, int retirar){
+int RetiraSonda(TSondas* Sondas, int retirar){
     TCelula_S* pAux;
     pAux = Sondas->pPrimeiro;
     TCelula_S* p_anterior = NULL;
@@ -41,9 +41,10 @@ int Retira(TSondas* Sondas, int retirar){
 }
 
 
-void Imprime(TSondas* Sonda, Sonda* sonda) {
+void ImprimeSonda(TSondas* Sondas){
+    printf("entrou aqui\n");
     TCelula_S* pAux;
-    pAux = Sonda->pPrimeiro->pProx;
+    pAux = Sondas->pPrimeiro->pProx;
     if (pAux == NULL) {
         return;
     }
@@ -59,4 +60,3 @@ void Imprime(TSondas* Sonda, Sonda* sonda) {
         pAux = pAux->pProx;
     }
 }
-
