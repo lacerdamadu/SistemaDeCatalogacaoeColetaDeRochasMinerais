@@ -41,22 +41,16 @@ int RetiraSonda(TSondas* Sondas, int retirar){
 }
 
 
-void ImprimeSonda(TSondas* Sondas){
-    printf("entrou aqui\n");
+int ImprimeSonda(TSondas* Sondas){
     TCelula_S* pAux;
+    int passagem = 0;
     pAux = Sondas->pPrimeiro->pProx;
     if (pAux == NULL) {
-        return;
+        return 0;
     }
     while (pAux != NULL) {
-        printf("Identificador: %d\n", pAux->Sonda.Identificador);
-        printf("Latitude: %d\n", pAux->Sonda.Latitude);
-        printf("Longitude: %d\n", pAux->Sonda.Longitude);
-        printf("Peso: %d\n", pAux->Sonda.CompartmentoS.PesoMax);
-        printf("Velocidade: %d\n", pAux->Sonda.Velocidade);
-        printf("Ligado: %d\n", pAux->Sonda.EstaLigada);
-        printf("Combustivel: %d\n", pAux->Sonda.Combustivel);
-        printf("Compartimentos: %d\n", pAux->Sonda.CompartmentoS);
+        ImprimiLista(&pAux->Sonda.CompartmentoS);
         pAux = pAux->pProx;
     }
+    return 1;
 }

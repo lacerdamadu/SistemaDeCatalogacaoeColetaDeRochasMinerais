@@ -12,13 +12,13 @@ void InicializaRocha(RochaMineral* Rocha, double Peso, ListaMinerais* ListaMin, 
     setLongitude(Rocha, Longitude);
     setData(Rocha, DataC);
 
-    char res;
+    /*char res;
     printf("Imprimir Rocha? (s/n) ");
     getchar();
     scanf("%c", &res);
     if(res == 's'){
         ImprimeRocha(Rocha);
-    }
+    }*/
 
 }
 
