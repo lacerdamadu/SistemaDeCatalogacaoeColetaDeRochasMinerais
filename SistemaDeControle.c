@@ -9,19 +9,18 @@
 #define STRING 100
 #define Data 11
 
-void Central(){
+void Central(TSondas *lista){
     printf("Bem-vindo(a) ao Sistema de Controle e Catalogação de Rochas Minerais!\n");
     printf("Como voce deseja realizar a entrada de dados?\n");
     printf("(1)Arquivo.\n(2)Terminal.\n");
-    TSondas lista;
     int escolha;
     scanf("%d", &escolha);
     switch (escolha){
         case 1:
-            LeituraPorArquivo(&lista);
+            LeituraPorArquivo(lista);
             break;
         case 2:
-            LeituraPeloTerminal(&lista);
+            LeituraPeloTerminal(lista);
             break;
         default:
             break;
@@ -206,13 +205,10 @@ int LeituraPeloTerminal(TSondas *lista){
 
     case 2:
         if(numsondas == 0){
-
             printf("Antes de realizar essa operacao e necessario criar uma sonda.\n");
-
             LeituraPeloTerminal(lista);
-
-        } else {
-
+        }
+        else{
         printf("Esta operacao ira criar uma nova rocha de acordo com os atributos digitados.\n"
         "Alem de adiciona-la na sonda mais proxima ou que ja tenha uma amostra do mesmo tipo de rocha.\n"
         "Concorda em prosseguir?(s/n)");
