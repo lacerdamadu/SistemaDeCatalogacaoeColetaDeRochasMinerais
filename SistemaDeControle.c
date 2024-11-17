@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <locale.h>
 
 #include "SistemaDeControle.h"
 
 #define PESOMAXIMO 10000
-
 #define STRING 100
 #define Data 11
 
 void Central(TSondas *lista){
-    printf("Bem-vindo(a) ao Sistema de Controle e CatalogaÃ§Ã£o de Rochas Minerais!\n");
+    setlocale(LC_ALL, "Portuguese_Brazil");
+    printf("Bem-vindo(a) ao Sistema de Controle e Catalogaçãoo de Rochas Minerais!\n");
     printf("Como voce deseja realizar a entrada de dados?\n");
     printf("(1)Arquivo.\n(2)Terminal.\n");
     int escolha;
@@ -74,8 +75,6 @@ int LeituraPorArquivo(TSondas *lista){
         switch(operacao){
 
         case 'R':
-
-
             fscanf(entrada,"%lf %lf %d %s %s %s", &latrocha, &longrocha, &pesorocha, mineral1, mineral2, mineral3);
             if(strcmp(mineral1, "/n")!=0){
                 InsMineral(&listaa, mineral1);
@@ -99,7 +98,7 @@ int LeituraPorArquivo(TSondas *lista){
             for(int i = 0; i > numsondas; i++){
                 Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste);
                 AuxLis = AuxLis->pProx;
-            } /*preenche as distÃ¢ncias relativas das sondas atÃ© a rocha*/
+            } /*preenche as distâncias relativas das sondas até a rocha*/
 
             double MenorDist = Distancias[0];
             int IndDes;
@@ -109,7 +108,7 @@ int LeituraPorArquivo(TSondas *lista){
                     MenorDist = Distancias[i];
                     IndDes = j+1;
                 }
-            } /*acha o identificador da sonda de menor distÃ¢ncia*/
+            } /*acha o identificador da sonda de menor distância*/
 
             
             Apontador pAux;
@@ -117,7 +116,7 @@ int LeituraPorArquivo(TSondas *lista){
 
             while(pAux->Sonda.Identificador != IndDes){
                 pAux = pAux->pProx;
-            } /*A partir do identificador acha o enderÃµ de memÃ³ria da sonda de menor distÃ¢ncia*/
+            } /*A partir do identificador acha o enderço de memória da sonda de menor distância*/
             
             InsereRocha(&pAux->Sonda.CompartmentoS, &RochaTeste, pAux->Sonda.CompartmentoS.PesoMax);
             /*Insere a rocha nessa sonda*/
@@ -141,20 +140,20 @@ int LeituraPeloTerminal(TSondas *lista){
     time_t mytime;
     mytime = time(NULL);
 
-    int numsondas = 0;
+    int numsondas = 1;
 
     printf("Inicializando a entrada...\n");
-    printf("Qual operacao deseja realizar?\n");
+    printf("Qual operação deseja realizar?\n");
     printf("(1)Inicializacao de sondas.\n"
-    "(2)Inicializacao de rochas.\n"
-    "(3)RedistribuiÃ§Ã£o de rochas.\n"
-    "(4)ImpressÃ£o do estado atual das sondas.\n");
+    "(2)Inicialização de rochas.\n"
+    "(3)Redistribuiçãoo de rochas.\n"
+    "(4)Impressão do estado atual das sondas.\n");
     int escolha; 
     scanf("%d", &escolha);
     switch (escolha){
     case 1:
-        printf("Esta operacao irÃ¡ criar uma nova sonda de acordo com os tributos digitados."
-        "A sonda tambem serÃ¡ ligada e disparada para o solo Marciano."
+        printf("Esta operacao irá criar uma nova sonda de acordo com os tributos digitados.\n"
+        "A sonda tambem será ligada e disparada para o solo Marciano.\n"
         "Concorda em prosseguir?(s/n)\n");
         getchar();
         char res;
@@ -164,7 +163,7 @@ int LeituraPeloTerminal(TSondas *lista){
             
             double lat_i, long_i;
             int  c_i, v_i, nc_i, identificador = 1;
-            printf("Digite as informaÃ§Ãµes da sonda:\n");
+            printf("Digite as informações da sonda:\n");
             //getchar();
             printf("Latitude:");
             scanf("%lf", &lat_i);
@@ -174,7 +173,7 @@ int LeituraPeloTerminal(TSondas *lista){
             scanf("%d", &c_i);
             printf("Velocidade:");
             scanf("%d", &v_i);
-            printf("Nivel de combustivel:");
+            printf("Nivel de combustível:");
             scanf("%d", &nc_i);
 
             InicializaSonda(&NovaSonda, lat_i, long_i, c_i,
@@ -187,7 +186,7 @@ int LeituraPeloTerminal(TSondas *lista){
             identificador++;
             numsondas++;
 
-            printf("Deseja realizar outra operacao?(s/n)");
+            printf("Deseja realizar outra operação?(s/n)");
             getchar();
             char res2;
             scanf("%c", &res2);
@@ -205,125 +204,140 @@ int LeituraPeloTerminal(TSondas *lista){
 
     case 2:
         if(numsondas == 0){
-            printf("Antes de realizar essa operacao e necessario criar uma sonda.\n");
+            printf("Antes de realizar essa operação e necessário criar uma sonda.\n");
             LeituraPeloTerminal(lista);
         }
         else{
-        printf("Esta operacao ira criar uma nova rocha de acordo com os atributos digitados.\n"
-        "Alem de adiciona-la na sonda mais proxima ou que ja tenha uma amostra do mesmo tipo de rocha.\n"
-        "Concorda em prosseguir?(s/n)");
-        char res;
-        scanf("%c", res);
-        if(res == 's'){
-            ListaMinerais listaa;
-            double latrocha, longrocha;
-            int pesorocha; 
-            char mineral1[STRING];
-            char mineral2[STRING];
-            char mineral3[STRING];
+            printf("Esta operacao irá criar uma nova rocha de acordo com os atributos digitados.\n"
+            "Alem de adicioná-la na sonda mais próxima ou que ja tenha uma amostra do mesmo tipo de rocha.\n"
+            "Concorda em prosseguir?(s/n)\n");
+            getchar();
+            char res6;
+            scanf("%c", res6);
+            if(res6 == 's'){
+                ListaMinerais listaa;
+                double latrocha, longrocha;
+                int pesorocha; 
+                char mineral1[STRING];
+                char mineral2[STRING];
+                char mineral3[STRING];
 
-            printf("Digite as informaÃ§Ãµes da rocha:\n");
-            printf("Latitude:");
-            scanf("%lf", &latrocha);
-            printf("Longitude:");
-            scanf("%lf", &longrocha);
-            printf("Peso da rocha:");
-            scanf("%d", &pesorocha);
-            printf("Minerais que formam a rocha:");
-            scanf("%s %s %s", mineral1, mineral2, mineral3);
-            if(strcmp(mineral1, "/n")!=0){
-                InsMineral(&listaa, mineral1);
-            }
-            if(strcmp(mineral2, "/n")!=0){
-                InsMineral(&listaa, mineral2);
-            }
-            if(strcmp(mineral3, "/n")!=0){
-                InsMineral(&listaa, mineral3);
-            }
-
-            RochaMineral RochaTeste;
-            InicializaRocha(&RochaTeste, pesorocha, &listaa,
-             latrocha, longrocha, ctime(&mytime));  /*Inicializa uma rocha nova a 
-                                                                            partir do que o usuÃ¡rio digita*/
-
-            double Distancias[numsondas];       /*Vetor para armazenar as distÃ¢ncias das sondas em relaÃ§Ã£o Ã  rocha*/
-
-            Apontador AuxLis = lista->pPrimeiro;
-
-            for(int i = 0; i > numsondas; i++){
-                Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste);
-                AuxLis = AuxLis->pProx;
-            } /*Percorre a lista de sondas armazenando as distÃ¢ncia ralativas*/
-
-
-            double MenorDist = Distancias[0];
-            int IndDes;
-
-            for(int j = 0; j > numsondas; j++){
-                if(MenorDist > Distancias[j]){
-                    MenorDist = Distancias[j];
-                    IndDes = j+1;
+                printf("Digite as informações da rocha:\n");
+                printf("Latitude:");
+                scanf("%lf", &latrocha);
+                printf("Longitude:");
+                scanf("%lf", &longrocha);
+                printf("Peso da rocha:");
+                scanf("%d", &pesorocha);
+                printf("Minerais que formam a rocha:");
+                scanf("%s %s %s", mineral1, mineral2, mineral3);
+                if(strcmp(mineral1, "/n")!=0){
+                    InsMineral(&listaa, mineral1);
                 }
-            } /*Acha o identificador da sonda com menor distÃ¢ncia*/
+                if(strcmp(mineral2, "/n")!=0){
+                    InsMineral(&listaa, mineral2);
+                }
+                if(strcmp(mineral3, "/n")!=0){
+                    InsMineral(&listaa, mineral3);
+                }
 
-            
-            Apontador pAux;
-            pAux = lista->pPrimeiro->pProx;
+                RochaMineral RochaTeste;
+                InicializaRocha(&RochaTeste, pesorocha, &listaa,
+                latrocha, longrocha, ctime(&mytime));  /*Inicializa uma rocha nova a 
+                                                                                partir do que o usuÃ¡rio digita*/
 
-            while(pAux->Sonda.Identificador != IndDes){
-                pAux = pAux->pProx;
-            } /*Acha o endereÃ§o de memÃ³ria da sonda com menor distÃ¢nica a partir do identificador*/
-            
-            InsereRocha(&pAux->Sonda.CompartmentoS, &RochaTeste, pAux->Sonda.CompartmentoS.PesoMax);
-            /*Insere a rocha no compartimento da sonda com menor distÃ¢ncia*/
-            
-            printf("Deseja realizar outra operacao?(s/n)");
-            char res1;
-            scanf("%c", &res1);
-            if(res1 == 's'){
+                double Distancias[numsondas];       /*Vetor para armazenar as distÃ¢ncias das sondas em relaÃ§Ã£o Ã  rocha*/
+
+                Apontador AuxLis = lista->pPrimeiro;
+
+                for(int i = 0; i > numsondas; i++){
+                    Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste);
+                    AuxLis = AuxLis->pProx;
+                } /*Percorre a lista de sondas armazenando as distância ralativas*/
+
+
+                double MenorDist = Distancias[0];
+                int IndDes;
+
+                for(int j = 0; j > numsondas; j++){
+                    if(MenorDist > Distancias[j]){
+                        MenorDist = Distancias[j];
+                        IndDes = j+1;
+                    }
+                } /*Acha o identificador da sonda com menor distância*/
+
+                
+                Apontador pAux;
+                pAux = lista->pPrimeiro->pProx;
+
+                while(pAux->Sonda.Identificador != IndDes){
+                    pAux = pAux->pProx;
+                } /*Acha o endereço de memória da sonda com menor distânica a partir do identificador*/
+                
+                InsereRocha(&pAux->Sonda.CompartmentoS, &RochaTeste, pAux->Sonda.CompartmentoS.PesoMax);
+                /*Insere a rocha no compartimento da sonda com menor distância*/
+                
+                printf("Deseja realizar outra operação?(s/n)");
+                getchar();
+                char res1;
+                scanf("%c", &res1);
+                if(res1 == 's'){
+                    LeituraPeloTerminal(lista);
+                }
+                else{
+                    return 0;
+                }   
+            }
+        else{
+            LeituraPeloTerminal(lista);
+        }
+    }
+    case 4:
+        printf("Esta opercação ira imprimir as informações das rochas coletadas até o momento,\n"
+        "além da identificação de qual sonda ela está armazenda.\n"
+        "Concorda em prosseguir?\n");
+        getchar();
+        char res5;
+        scanf("%c", res5);
+        if(res5 == 's'){
+            ImprimeSonda(lista);
+            printf("Deseja realizar outra operação?(s/n)\n");
+            char res2;
+            scanf("%c", &res2);
+            if(res2 == 's'){
                 LeituraPeloTerminal(lista);
             }
             else{
                 return 0;
             }
-            
         }
         else{
             LeituraPeloTerminal(lista);
-        }
-        
-        }
-    case 4:
-
-        ImprimeSonda(lista);
-
-
-        printf("Deseja realizar outra operacao?(s/n)");
-        char res2;
-        scanf("%c", &res2);
-        if(res2 == 's'){
-            LeituraPeloTerminal(lista);
-        }
-        else{
-            return 0;
         }
         break;
     case 3:
+        printf("Esta função irá mover todas as sondas para o ponto (0,0) e redistrubuir as rochas entre elas.\n"
+        "Com o intuito de que cada sonda fique com aproximadamente a média do peso total delas\n."
+        "Concorda em prosseguir?\n");
+        getchar();
+        char res4;
+        scanf("%c", res4);
 
-        /*Chama a funÃ§Ã£o de redistribuiÃ§Ã£o que colocara as sondas no ponto (0,0) 
-        e redistribuira as rochas de modo que elas carreguem aproximadamente a media 
-        do peso atual das sondas*/
-
-        RedistribuiRochas(lista, numsondas);
-
-        printf("Deseja realizar outra operacao?(s/n)");
-        char res3;
-        scanf("%c", &res3);
-        if(res3 == 's'){
-            LeituraPeloTerminal(lista);
+        if(res=='s'){
+            RedistribuiRochas(lista, numsondas);
+            printf("Deseja realizar outra operacao?(s/n)\n");
+            getchar();
+            char res3;
+            scanf("%c", &res3);
+            if(res3 == 's'){
+                LeituraPeloTerminal(lista);
+            }
+            else{
+                return 0;
+            }
         }
         else{
-            return 0;
+            LeituraPeloTerminal(lista);
         }
         break;
     default:
