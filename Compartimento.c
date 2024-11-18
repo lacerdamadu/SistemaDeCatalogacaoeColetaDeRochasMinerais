@@ -30,13 +30,10 @@ int VerificaListaVazia(Compartimento *lista){
 }
 
 void ImprimiLista(Compartimento *lista){
-    printf("entrou no imprime lista\n");
-    int passagem = 0;
     Celula* pAux;
     pAux = lista->primeiro->pProx;
     while(pAux != NULL){
-    passagem++; printf("entrou no while imprime lista %d vez\n", passagem);
-    printf("%s %d\n", pAux->rocha.Categoria, pAux->rocha.Peso);
+    printf("%s %.0lf\n", pAux->rocha.Categoria, pAux->rocha.Peso);
     pAux = pAux->pProx; /* próxima célula */
     }
 }

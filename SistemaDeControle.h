@@ -4,7 +4,6 @@
 #define STRING 100
 #define Data 11
 
-
 #include "ListaSondas.h"
 
 void Central(TSondas *lista);//Contem um menu interativo dando ao usuario a opção de decidir o que ele quer fazer

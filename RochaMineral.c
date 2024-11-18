@@ -12,14 +12,6 @@ void InicializaRocha(RochaMineral* Rocha, double Peso, ListaMinerais* ListaMin, 
     setLongitude(Rocha, Longitude);
     setData(Rocha, DataC);
 
-    char res;
-    printf("Imprimir Rocha? (s/n) ");
-    getchar();
-    scanf("%c", &res);
-    if(res == 's'){
-        ImprimeRocha(Rocha);
-    }
-
 }
 
 void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
@@ -57,7 +49,6 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
         }
 
    }   
-
 
     //printf("%d %d %d %d %d\n", ferrolita, solarium, aquavitae, calaris, terranita);
 
@@ -107,11 +98,10 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
 }
 
 void ImprimeRocha(RochaMineral *Rocha){
-    printf("entrou\n");
     printf("\nCategoria: %s", Rocha->Categoria);
-    printf("\nPeso: %.2lf", Rocha->Peso);
+    printf("\nPeso: %.0lf", Rocha->Peso);
     printf("\nLatitude: %lf", Rocha->Latitude);
-    printf("\nLongitude: %lf", Rocha->Longitude);
+    printf("\nLongitude: %lf\n", Rocha->Longitude);
 }
 
 void setPesoRocha(RochaMineral *Rocha, double Peso){
@@ -142,4 +132,5 @@ void setData(RochaMineral *Rocha, char* DataC){
 char* getData(RochaMineral *Rocha){
     return(Rocha->DataC);
 
+>>>>>>> Ana
 }
