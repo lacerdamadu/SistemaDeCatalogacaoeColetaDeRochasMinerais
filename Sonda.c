@@ -14,7 +14,6 @@ void InicializaSonda(Sonda *NovaSonda, double Latitude, double Longitude,
     NovaSonda->Velocidade = Velocidade;
     NovaSonda->Combustivel = Combustivel;
     NovaSonda->Identificador = Identificador;
-
 }
 
 void LigaSonda(Sonda *SondaDes){
@@ -37,6 +36,7 @@ double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude){
 }
 
 double CalculaDist(Sonda Sonda, RochaMineral Rocha){
+
     double DistTotal;
     double DistLat, DistLong, ResultRaiz;
 

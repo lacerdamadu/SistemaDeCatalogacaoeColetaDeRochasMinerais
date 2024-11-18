@@ -3,9 +3,9 @@
 #include "SistemaDeControle.h"
 
 int main(){
-    TSondas lista;
-    FazListaVazia(&lista);
-    Central(&lista);
+    TSondas ListaSondas;
+    FazListaVazia(&ListaSondas);
+    Central(&ListaSondas);
     return 0;
 }
 
