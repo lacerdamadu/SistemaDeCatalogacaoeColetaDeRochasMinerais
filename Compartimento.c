@@ -85,8 +85,8 @@ RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
         pAux2 = pAux;
         pAux = pAux->pProx;
     }
-    RochaMineral* pAux3 = &pAux->rocha;
+    RochaMineral* pAux3 = &pAux->rocha;//Rocha Mineral que queremos remover
     pAux2->pProx = pAux->pProx;
-    return pAux3;
+    return pAux3;//Retorna a rocha Mineral que queremos remover
 }
 

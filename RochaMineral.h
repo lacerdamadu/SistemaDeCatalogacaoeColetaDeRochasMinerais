@@ -21,16 +21,11 @@ void ImprimeRocha(RochaMineral *Rocha);
 
 void setPesoRocha(RochaMineral *Rocha, double Peso);
 double getPesoRocha(RochaMineral *Rocha);
-
 void setLatitude(RochaMineral *Rocha, double Latitude);
 double getLatitude(RochaMineral *Rocha);
-
 void setLongitude(RochaMineral *Rocha, double Longitude);
 double getLongitude(RochaMineral *Rocha);
-
-
 void setData(RochaMineral *Rocha, char* DataC);
 char* getData(RochaMineral *Rocha);
-
 
 #endif // ROCHAMINERAL_H_INCLUDED

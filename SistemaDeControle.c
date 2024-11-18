@@ -11,7 +11,7 @@
 
 void Central(TSondas *lista){
     setlocale(LC_ALL, "Portuguese_Brazil");
-    printf("Bem-vindo(a) ao Sistema de Controle e Catalogaçãoo de Rochas Minerais!\n");
+    printf("Bem-vindo(a) ao Sistema de Controle e Catalogação de Rochas Minerais!\n");
     printf("Como voce deseja realizar a entrada de dados?\n");
     printf("(1)Arquivo.\n(2)Terminal.\n");
     int escolha;
