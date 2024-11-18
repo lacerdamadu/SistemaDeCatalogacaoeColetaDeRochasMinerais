@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void CriaListaRocha(Compartimento* lista, int PesoMax){
+void CriaListaRocha(Compartimento* lista, double PesoMax){
     lista->primeiro = (Celula*) malloc(sizeof(Celula));
     lista->ultimo = lista->primeiro;
     lista->primeiro->pProx = NULL;
@@ -61,12 +61,7 @@ void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
     (pAux->rocha.Peso) = (rocha->Peso);
 }
 
-int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax){
-    int Peso = PesoAtual(lista);
-    Peso += (rocha->Peso);
-    if(Peso>PesoMax){
-        return 0;
-    }
+int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax){
     lista->ultimo->pProx = (Celula*) malloc(sizeof(Celula));
     lista->ultimo = lista->ultimo->pProx;
     lista->ultimo->rocha = *rocha;
@@ -79,14 +74,38 @@ RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
         return 0;
     }
     Celula* pAux;
-    Celula* pAux2;
-    pAux = lista->primeiro->pProx;//Primeira rocha da lista
-    while((strcmp(pAux->rocha.Categoria,rocha->Categoria))!=0){
-        pAux2 = pAux;
-        pAux = pAux->pProx;
+    
+    Celula* pAux2; //achar o anterior
+
+    pAux = lista->primeiro->pProx; //Primeira rocha da lista
+ 
+    RochaMineral* pAux3; //Reservar a memória que será removida
+
+
+    if(pAux->pProx == NULL){ //Se a lista dó tiver um elemento, esvazia a lista
+        pAux3 = &pAux->rocha;
+        CriaListaRocha(lista, 1000);
+        
+    } else {
+
+        while((strcmp(pAux->rocha.Categoria,rocha->Categoria)) !=0 && pAux->rocha.Peso != rocha->Peso){
+
+            pAux2 = pAux;
+            pAux = pAux->pProx;
+            
+            pAux3 = &pAux->rocha;
+
+            if(pAux->pProx == NULL){
+                pAux2->pProx == NULL;
+            }
+        
+        }
+
+        pAux2->pProx = pAux->pProx;
     }
-    RochaMineral* pAux3 = &pAux->rocha;//Rocha Mineral que queremos remover
-    pAux2->pProx = pAux->pProx;
-    return pAux3;//Retorna a rocha Mineral que queremos remover
+    printf("rocha que quero remover %s\n", pAux3->Categoria);
+
+    return pAux3;
+
 }
 
