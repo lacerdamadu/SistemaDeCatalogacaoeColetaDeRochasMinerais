@@ -378,6 +378,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
         double Med = PesoTotal/numsondas;
 
         Compartimento ComTemporario;
+        
         CriaListaRocha(&ComTemporario, PESOMAXIMO);
 
         AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
