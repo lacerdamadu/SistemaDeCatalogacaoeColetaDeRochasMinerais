@@ -6,9 +6,12 @@
 
 #include "SistemaDeControle.h"
 
-#define PESOMAXIMO 10000
+
+
 #define STRING 100
 #define Data 11
+
+const double PESOMAXIMO = 10000.0;
 
 void Central(TSondas *ListaSondas){
     setlocale(LC_ALL, "Portuguese_Brazil");
@@ -386,7 +389,6 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
         Apontador AuxiliarSondas2 = AuxiliarSondas;
 
         while(AuxiliarSondas != NULL){
-            printf("peso atual do %d: %lf\n", AuxiliarSondas->Sonda.Identificador, PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS));
             while(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) > Med) {
                 if (AuxiliarSondas->Sonda.CompartmentoS.primeiro->pProx != NULL) {
                      // Verifica se há mais de uma rocha no compartimento   
@@ -395,13 +397,12 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                                 PESOMAXIMO);
                                 ImprimiLista(&ComTemporario);
                                 ImprimiLista(&AuxiliarSondas->Sonda.CompartmentoS);
-                    continue;
                                 
                 } else {
                     break; 
                 }
             }
-                printf("passou pelo %d\n", AuxiliarSondas->Sonda.Identificador);
+                
                 AuxiliarSondas = AuxiliarSondas->pProx;
                 
         }
@@ -412,7 +413,6 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
         AuxiliarSondas2 = AuxiliarSondas;
         
         while (AuxiliarSondas != NULL) {
-            printf("oiii\n");
             // Itera enquanto o peso atual do compartimento é menor que a média
             while (PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) < Med) {
 

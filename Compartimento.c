@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void CriaListaRocha(Compartimento* lista, int PesoMax){
+void CriaListaRocha(Compartimento* lista, double PesoMax){
     lista->primeiro = (Celula*) malloc(sizeof(Celula));
     lista->ultimo = lista->primeiro;
     lista->primeiro->pProx = NULL;
@@ -61,7 +61,7 @@ void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
     (pAux->rocha.Peso) = (rocha->Peso);
 }
 
-int InsereRocha(Compartimento *lista, RochaMineral *rocha, int PesoMax){
+int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax){
     int Peso = PesoAtual(lista);
     Peso += (rocha->Peso);
     if(Peso>PesoMax){
