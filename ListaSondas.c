@@ -43,13 +43,17 @@ int RetiraSonda(TSondas* Sondas, int retirar){
 
 int ImprimeSonda(TSondas* Sondas){
     TCelula_S* pAux;
-    int passagem = 0;
     pAux = Sondas->pPrimeiro->pProx;
     if (pAux == NULL) {
         return 0;
     }
     while (pAux != NULL) {
-        ImprimiLista(&pAux->Sonda.CompartmentoS);
+        printf("Identificador: %d\n", pAux->Sonda.Identificador);
+        if(VerificaListaVazia(&pAux->Sonda.CompartmentoS)){
+            printf("Compartimento Vazio!\n");
+        } else{
+            ImprimiLista(&pAux->Sonda.CompartmentoS);
+        }
         pAux = pAux->pProx;
     }
     return 1;
