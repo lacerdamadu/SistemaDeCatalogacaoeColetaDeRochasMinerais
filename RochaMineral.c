@@ -132,5 +132,4 @@ void setData(RochaMineral *Rocha, char* DataC){
 char* getData(RochaMineral *Rocha){
     return(Rocha->DataC);
 
->>>>>>> Ana
 }
