@@ -113,3 +113,4 @@ RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
         return pAux3;
     }
 
+
