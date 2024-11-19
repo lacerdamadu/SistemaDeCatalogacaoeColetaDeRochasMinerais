@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "ListaSondas.h"
 #include "SistemaDeControle.h"
 
 int main(){
@@ -8,5 +7,3 @@ int main(){
     Central(&ListaSondas);
     return 0;
 }
-
-

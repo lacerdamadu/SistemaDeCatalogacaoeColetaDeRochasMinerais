@@ -12,25 +12,29 @@ void InsMineral(ListaMinerais* ListaM, char *NomeNov){
     PreencheMineral(&NovoM, NomeNov);
     ListaM->listaminerais[ListaM->Ultimo] = NovoM;
     ListaM->Ultimo++;
+    printf("num de minerais pos inserção %d\n", ListaM->Ultimo);
 } /*Não tratei pro caso da lista estar cheia,
     porque obrigatoriamente só receberemos no
     máximo três mineirais de entrada em cada lista*/
 
-int RetMineral(ListaMinerais* ListaM, char *Nomed, Minerais *MinRet){
+int RetMineral(ListaMinerais* ListaM, char *Nomed){
     if(ListaM->Ultimo == ListaM->Primeiro){
         return 0;
     }
-    int i = 0; int pos;
-    while(ListaM->listaminerais[i].Nome!= NULL){
+
+    int pos;
+
+    for(int i = 0; i<ListaM->Ultimo;i++){
         if (ListaM->listaminerais[i].Nome == Nomed){
-            *MinRet = ListaM->listaminerais[i];
             pos = i;
         }
-        i++;
     }
     for (int j = pos+1; j <= ListaM->Ultimo; j++){
         ListaM->listaminerais[j-1] = ListaM->listaminerais[j];
     }
+
+    ListaM->Ultimo--;
+
     return 1;
 }
 
@@ -51,5 +55,13 @@ void ImprimeListaM(ListaMinerais* ListaM){
         printf("Dureza: %.2f\n", ListaM->listaminerais[i].Dureza);
         printf("Cor: %s\n", tranformacor(ListaM->listaminerais[i].Cores));
         printf("\n");
+    }
+}
+
+void EsvaziaLista(ListaMinerais *ListaM){
+    int num = ListaM->Ultimo;
+
+    for(int i = 0; i < num; i++){
+        RetMineral(ListaM, ListaM->listaminerais[i].Nome);
     }
 }
