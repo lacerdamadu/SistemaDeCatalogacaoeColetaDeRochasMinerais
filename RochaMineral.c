@@ -15,12 +15,16 @@ void InicializaRocha(RochaMineral* Rocha, double Peso, ListaMinerais* ListaMin, 
 }
 
 void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
+
+
     int ferrolita = 0, solarium = 0, aquavitae = 0, terranita = 0, calaris = 0;
-    char categoria[20];
+
+    char categoria[20] = "";
+
     for(int i = 0; i < MaxTam; i++){
-    if ((strcmp(ListaMin->listaminerais[i].Nome, "Ferrolita") == 0)){
-        ferrolita = 1;
-    }
+        if ((strcmp(ListaMin->listaminerais[i].Nome, "Ferrolita") == 0)){
+            ferrolita = 1;
+        }
    }
     for(int i = 0; i < MaxTam; i++){
         if ((strcmp(ListaMin->listaminerais[i].Nome, "Solarium") == 0)){
@@ -47,7 +51,6 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
         if ((strcmp(ListaMin->listaminerais[i].Nome, "Calaris") == 0)){
             calaris = 1;
         }
-
    }   
 
     //printf("%d %d %d %d %d\n", ferrolita, solarium, aquavitae, calaris, terranita);
@@ -61,35 +64,35 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
         strcpy(categoria, "Solaris");
    } 
    
-   else if(ferrolita && !solarium && aquavitae && !calaris && !terranita){ //3
+   else if(ferrolita && !solarium && aquavitae && !calaris && !terranita){
         strcpy(categoria, "Aquaferro");
    } 
    
-   else if(!ferrolita && !solarium && !aquavitae && calaris && terranita){ //4
+   else if(!ferrolita && !solarium && !aquavitae && calaris && terranita){ 
         strcpy(categoria, "Terrolis");
    } 
    
-   else if(!ferrolita && solarium && !aquavitae && !calaris && terranita){ //5
+   else if(!ferrolita && solarium && !aquavitae && !calaris && terranita){ 
         strcpy(categoria, "Terrasol");
    } 
    
-   else if(!ferrolita && !solarium && aquavitae && !calaris && terranita){ //6
+   else if(!ferrolita && !solarium && aquavitae && !calaris && terranita){ 
         strcpy(categoria, "Aquaterra");
    } 
    
-   else if(!ferrolita && !solarium && aquavitae && calaris && !terranita){ //7
+   else if(!ferrolita && !solarium && aquavitae && calaris && !terranita){ 
         strcpy(categoria, "Calquer");
    } 
    
-   else if(ferrolita && solarium && !aquavitae && !calaris && !terranita){ //8
+   else if(ferrolita && solarium && !aquavitae && !calaris && !terranita){ 
         strcpy(categoria, "Solarisfer");
    } 
    
-   else if(ferrolita && !solarium && !aquavitae && !calaris && terranita){ //9
+   else if(ferrolita && !solarium && !aquavitae && !calaris && terranita){ 
         strcpy(categoria, "Terralis");
    } 
    
-   else if(ferrolita && !solarium && aquavitae && calaris && !terranita){ //10
+   else if(ferrolita && !solarium && aquavitae && calaris && !terranita){ 
         strcpy(categoria, "Aquacalis");
    }
 

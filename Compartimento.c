@@ -103,8 +103,6 @@ RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
 
         pAux2->pProx = pAux->pProx;
     }
-    printf("rocha que quero remover %s\n", pAux3->Categoria);
 
     return pAux3;
 }
-

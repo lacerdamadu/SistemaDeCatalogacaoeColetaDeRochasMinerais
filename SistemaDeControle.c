@@ -264,8 +264,6 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                 InicializaRocha(&RochaTeste, pesorocha, &ListaMineirais,
                 latrocha, longrocha, ctime(&mytime));  /*Inicializa uma rocha nova a 
                                                                                 partir do que o usuário digita*/  
-
-                IniVListaM(&ListaMineirais);
                                                                           
                 double Distancias[numsondas];       /*Vetor para armazenar as distâncias das sondas em relação à rocha*/
 
@@ -315,7 +313,9 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                             MemoriaQueQueremos = Memorias[d+1];
                             }
                         }
-                    }
+                        
+                        EsvaziaLista(&ListaMineirais);
+            }
                 
         printf("Deseja realizar outra opera��o?(s/n)");
         char res1;
@@ -326,7 +326,10 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
         else{
             return 0;
             } 
-               
+
+        
+        
+
     } else if(escolha == 3) {
             printf("Esta operca��o irá imprimir as informa��es das rochas coletadas at� o momento,\n"
             "al�m da identifica��o de qual sonda ela est� armazenda.\n");
@@ -380,6 +383,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
         }
 
         double Med = PesoTotal/numsondas;
+        printf("media %lf", Med);
 
         Compartimento ComTemporario;
         
@@ -391,9 +395,13 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
             while(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) > Med) {
                 if (AuxiliarSondas->Sonda.CompartmentoS.primeiro->pProx->pProx != NULL) {
                      // Verifica se há mais de uma rocha no compartimento   
-                    InsereRocha(&ComTemporario,
-                                RemoveRocha(&AuxiliarSondas->Sonda.CompartmentoS, &AuxiliarSondas->Sonda.CompartmentoS.ultimo->rocha),
-                                PESOMAXIMO);
+                    if(VerificaSeTemQuemReceber(ListaSondas, Med)){
+                        InsereRocha(&ComTemporario,
+                        RemoveRocha(&AuxiliarSondas->Sonda.CompartmentoS, &AuxiliarSondas->Sonda.CompartmentoS.ultimo->rocha),
+                        PESOMAXIMO);
+                    } else {
+                            break;
+                    }
                 } else {
                     break; 
                 }
@@ -409,40 +417,67 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
         AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
 
         Apontador AuxiliarSondas2 = AuxiliarSondas;
+
+        ImprimiLista(&ComTemporario);
         
         while (AuxiliarSondas != NULL) {
 
-            // Itera enquanto o peso atual do compartimento é menor ou igual a média
-            while (PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) <= Med) {
-                printf("o peso do %d é menor que a media\n", AuxiliarSondas->Sonda.Identificador);
+            // Verifica se o compartimento temporário não está vazio
+            if (!VerificaListaVazia(&ComTemporario)) { 
 
-                // Verifica se o compartimento temporário não está vazio
-                if (!VerificaListaVazia(&ComTemporario)) {
+            //Vê se o compartimento atual sendo percorrido tem um peso menor ou igual a média
+                while (PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) < Med) {
 
-                    //verifica se a sonda comporta a rocha
-                    if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
-                    <= AuxiliarSondas->Sonda.CompartmentoS.PesoMax){
+                    //Verifica novamente, dentro do while para não continuar caso o compartimento tem esteja vazio
+                    if (!VerificaListaVazia(&ComTemporario)) { 
 
-                        // Insere a última rocha do compartimento temporário no compartimento da sonda
+                        //verifica se a sonda comporta a rocha
+                        if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
+                        <= AuxiliarSondas->Sonda.CompartmentoS.PesoMax){
 
-                        RochaMineral *RochaRemovida = RemoveRocha(&ComTemporario, &ComTemporario.ultimo->rocha);
-                        InsereRocha(&AuxiliarSondas->Sonda.CompartmentoS,
-                                    RochaRemovida, 
-                                    AuxiliarSondas->Sonda.CompartmentoS.PesoMax);
+                            printf("peso max do comp %d: %lf\n", AuxiliarSondas->Sonda.Identificador, 
+                            AuxiliarSondas->Sonda.CompartmentoS.PesoMax);
+                            printf("Peso apos colocar a rocha %lf\n", PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso);
 
-                        printf("compartimento %d\n", AuxiliarSondas->Sonda.Identificador);
-                        ImprimiLista(&AuxiliarSondas->Sonda.CompartmentoS);
+                            // Insere a última rocha do compartimento temporário no compartimento da sonda
+                            //RochaMineral *RochaRemovida = RemoveRocha(&ComTemporario, &ComTemporario.ultimo->rocha);
+                            InsereRocha(&AuxiliarSondas->Sonda.CompartmentoS,
+                                        RemoveRocha(&ComTemporario, &ComTemporario.ultimo->rocha), 
+                                        AuxiliarSondas->Sonda.CompartmentoS.PesoMax);
+                            printf("inseriu a rocha %s no %d\n", AuxiliarSondas->Sonda.CompartmentoS.ultimo->rocha.Categoria, AuxiliarSondas->Sonda.Identificador);
+                            ImprimeRocha(&AuxiliarSondas->Sonda.CompartmentoS.ultimo->rocha);
+                            
+                            ImprimiLista(&AuxiliarSondas->Sonda.CompartmentoS);
+                        } else {
+                            //Faz sair do primeiro while se a sonda não comporta
+                            break;
+                        }
 
                     } else {
-                        //Faz sair do primeiro while se a sonda não comporta
+                        //Sai do segundo while caso o compartimento temp esteja vazio
                         break;
                     }
-                } else {
-                    AuxiliarSondas = ListaSondas->pUltimo->pProx; //eu acho que isso é o problema, trate
-                    break; // Sai do loop se o compatimento estiver vazio
                 }
+            } else {
+                break; // Sai do loop se o compatimento temporario estiver vazio
             }
                 // Move para o próximo nó na lista de sondas
                 AuxiliarSondas = AuxiliarSondas->pProx;
             }
+}
+
+int VerificaSeTemQuemReceber(TSondas *lista, double med){
+
+    int rec = 0;
+
+    Apontador AuxiliarSondas = lista->pPrimeiro->pProx;
+
+    while (AuxiliarSondas != NULL){
+        if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)<med){
+            rec = 1;
+        }
+        AuxiliarSondas = AuxiliarSondas->pProx;
+    }
+
+    return rec;
 }

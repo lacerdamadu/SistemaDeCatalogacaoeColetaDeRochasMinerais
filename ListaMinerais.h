@@ -15,9 +15,11 @@ void IniVListaM(ListaMinerais* ListaM);
 
 void InsMineral(ListaMinerais* ListaM, char *NomeNov);
 
-int RetMineral(ListaMinerais* ListaM, char *Nomed, Minerais *MinRet);
+int RetMineral(ListaMinerais* ListaM, char *Nomed);
 
 void ImprimeListaM(ListaMinerais* ListaM);
+
+void EsvaziaLista(ListaMinerais *ListaM);
 
 
 #endif // LISTAMINERAIS_H_
