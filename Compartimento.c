@@ -49,68 +49,97 @@ double PesoAtual(Compartimento *lista){
         Peso += (pAux->rocha.Peso);
         pAux = pAux->pProx;
     }
+
     return Peso;
 }
 
-void TrocaRocha(Compartimento *lista, RochaMineral *rocha){
+int TrocaRocha(Compartimento *lista, RochaMineral *rocha){
     Celula* pAux;
     pAux =  lista->primeiro->pProx;
     while(strcmp(pAux->rocha.Categoria, rocha->Categoria)!=0){
         pAux = pAux->pProx;
     }
-    (pAux->rocha.Peso) = (rocha->Peso);
+    if(pAux->rocha.Peso > rocha->Peso){
+        (pAux->rocha.Peso) = (rocha->Peso);
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
-int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax){
+int InsereRocha(Compartimento *lista, Celula* rocha, double PesoMax){
     lista->ultimo->pProx = (Celula*) malloc(sizeof(Celula));
     lista->ultimo = lista->ultimo->pProx;
-    lista->ultimo->rocha = *rocha;
+    *lista->ultimo = *rocha;
     lista->ultimo->pProx = NULL;
     return 1;
 }
-
-RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha){
+//se der errado pare aqui
+Celula* RemoveRocha(Compartimento *lista, Celula* rocha){
     if (VerificaListaVazia(lista)){
         return 0;
     }
     Celula* pAux;
 
-    Celula* pAux2;
-    pAux = lista->primeiro->pProx;//Primeira rocha da lista
-    while((strcmp(pAux->rocha.Categoria,rocha->Categoria))!=0){
-        pAux2 = pAux;
-        pAux = pAux->pProx;
-    }
-    RochaMineral* pAux3 = &pAux->rocha;//Rocha Mineral que queremos remover
-    pAux2->pProx = pAux->pProx;
-    return pAux3;//Retorna a rocha Mineral que queremos remover
-    }
+    Celula* pAux2; //achar o anterior
+
     pAux = lista->primeiro->pProx; //Primeira rocha da lista
- 
-    RochaMineral* pAux3; //Reservar a memória que será removida
+    Celula* pAux3; //Reservar a memória que será removida
 
+    if(pAux->pProx == NULL){ 
+    //Se a lista só tiver um elemento, esvazia a lista
+        pAux3 = pAux;
+        lista->ultimo = lista->primeiro;
+        lista->ultimo->pProx = NULL;
 
-    if(pAux->pProx == NULL){ //Se a lista dó tiver um elemento, esvazia a lista
-        pAux3 = &pAux->rocha;
-        CriaListaRocha(lista, 1000);
-        
-    } else {
+    } else if((strcmp(pAux->rocha.Categoria,rocha->rocha.Categoria) == 0) && (pAux->rocha.Peso == rocha->rocha.Peso)){ 
+    //caso esteja retirando o primeiro da lista
 
-        while((strcmp(pAux->rocha.Categoria,rocha->Categoria)) !=0 && pAux->rocha.Peso != rocha->Peso){
+        pAux3 = pAux;
+        lista->primeiro = lista->primeiro->pProx;
 
-            pAux2 = pAux;
+    } else if((strcmp(lista->ultimo->rocha.Categoria,rocha->rocha.Categoria) == 0) 
+    && (lista->ultimo->rocha.Peso == rocha->rocha.Peso)){
+    //caso esteja retirando do final da lista
+
+        pAux3 = lista->ultimo;
+        while(pAux->pProx->pProx != NULL){          
             pAux = pAux->pProx;
-            
-            pAux3 = &pAux->rocha;
 
-            if(pAux->pProx == NULL){
-                pAux2->pProx == NULL;
+        }
+        lista->ultimo = pAux;
+        lista->ultimo->pProx = NULL;
+
+    } else{
+    //caso esteja retirando do meio
+        while(pAux != NULL){          
+            pAux2 = pAux;
+
+            if((strcmp(pAux->rocha.Categoria,rocha->rocha.Categoria) == 0) && (pAux->rocha.Peso == rocha->rocha.Peso)){
+                pAux3 = pAux;
             }
-        
+            pAux = pAux->pProx;
         }
 
-        pAux2->pProx = pAux->pProx;
-        return pAux3;
+        pAux2->pProx = NULL;
+        lista->ultimo = pAux2;
+
     }
 
+    return pAux3;
+}
 
+int VerificaRochaExistente(Compartimento *lista, RochaMineral *rocha){
+    Celula *pAux = lista->primeiro->pProx;
+
+    int ver = 0;
+
+    while(pAux != NULL){
+        if((strcmp(pAux->rocha.Categoria,rocha->Categoria)) == 0){
+            ver = 1;
+        }
+        pAux = pAux->pProx;
+    }
+
+    return ver;
+}

@@ -12,7 +12,6 @@ void InsMineral(ListaMinerais* ListaM, char *NomeNov){
     PreencheMineral(&NovoM, NomeNov);
     ListaM->listaminerais[ListaM->Ultimo] = NovoM;
     ListaM->Ultimo++;
-    printf("num de minerais pos inserção %d\n", ListaM->Ultimo);
 } /*Não tratei pro caso da lista estar cheia,
     porque obrigatoriamente só receberemos no
     máximo três mineirais de entrada em cada lista*/
