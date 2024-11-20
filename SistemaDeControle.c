@@ -458,11 +458,9 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
         while (AuxiliarSondas != NULL) {
 
             if(!VerificaListaVazia(&ComTemporario)){
-
                 if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
                     <= AuxiliarSondas->Sonda.CompartmentoS.PesoMax &&
                      AuxiliarSondas->Sonda.Identificador == VetorSondas[ver]->Identificador){ 
-                        printf("satisfaz\n");
 
                     if(VerificaRochaExistente(&AuxiliarSondas->Sonda.CompartmentoS, &ComTemporario.ultimo->rocha)){
 
@@ -484,7 +482,6 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
 
                         Celula* RochaRemovida = RemoveRocha(&ComTemporario, ComTemporario.ultimo);
 
-                        printf("retirou\n");
                         printf("coom tm dps\n");
                         ImprimiLista(&ComTemporario);
 
