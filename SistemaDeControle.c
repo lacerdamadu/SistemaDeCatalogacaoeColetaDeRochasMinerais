@@ -457,12 +457,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
 
         while (AuxiliarSondas != NULL) {
 
-            printf("percorrendo p %d\n", AuxiliarSondas->Sonda.Identificador);
-
             if(!VerificaListaVazia(&ComTemporario)){
-                printf("oq quero colocar %.2lf\n", PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso);
-                printf("oq cabe %.2lf\n", AuxiliarSondas->Sonda.CompartmentoS.PesoMax);
-                printf("ind menor %d\n", indm);
 
                 if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
                     <= AuxiliarSondas->Sonda.CompartmentoS.PesoMax &&
@@ -503,14 +498,11 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                         if(VerificaListaVazia(&ComTemporario)){
                             break;
                         }
+                        break;
 
                     }
 
                     indm = VetorSondas[0]->Identificador;
-
-                    printf("com tem\n");
-                    ImprimiLista(&ComTemporario);
-
                     AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
 
                 } else if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
@@ -522,9 +514,6 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                     AuxiliarSondas = AuxiliarSondas->pProx;
                 } 
             }
-
-        printf("percorrendo %d\n", AuxiliarSondas->Sonda.Identificador);
-        printf("proximo: %d\n", AuxiliarSondas->pProx->Sonda.Identificador);
 
         }
 
