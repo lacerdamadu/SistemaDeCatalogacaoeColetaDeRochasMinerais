@@ -15,8 +15,7 @@ const double PESOMAXIMO = 10000.0;
 
 void Central(TSondas *ListaSondas){
     setlocale(LC_ALL, "Portuguese_Brazil");
-    printf("Bem-vindo(a) ao Sistema de Controle e Catalogação de Rochas Minerais!\n");
-
+    printf("Bem-vindo(a) ao Sistema de Controle e Catalogaï¿½ï¿½oo de Rochas Minerais!\n");
     printf("Como voce deseja realizar a entrada de dados?\n");
     printf("(1)Arquivo.\n(2)Terminal.\n");
     int escolha;
