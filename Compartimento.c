@@ -86,7 +86,6 @@ Celula* RemoveRocha(Compartimento *lista, Celula* rocha){
 
     if(pAux->pProx == NULL){ 
     //Se a lista só tiver um elemento, esvazia a lista
-    printf("entrou aqui\n");
         pAux3 = pAux;
         lista->ultimo = lista->primeiro;
         lista->ultimo->pProx = NULL;

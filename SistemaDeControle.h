@@ -10,7 +10,7 @@ void Central(TSondas *lista);//Contem um menu interativo dando ao usuario a opç
 int LeituraPorArquivo(TSondas *lista);//Lê o arquivo teste e passa os valores lidos para as outras funções
 int LeituraPeloTerminal(TSondas *lista);//Lê as informações digitadas no terminal e inicializa o que for passado
 void RedistribuiRochas(TSondas *ListaSondas, int numsondas);
-int VerificaSeTemQuemReceber(TSondas *lista, double med);
+int VerificaSeTemQuemReceber(TSondas *lista, Compartimento *Comp, double peso);
 void OrdenaPesos(Sonda **Sondas, int numsondas);
 void PreencheVetor(TSondas *Sondas, Sonda **VetorSondas, int numsondas);
 

@@ -397,10 +397,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
 
         AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
 
-
         Celula* RochaEmQuestao;
-
-        printf("\n\nmedia:%.2lf\n\n", Med);
 
         while(AuxiliarSondas != NULL){
         //Percorre as sondas
@@ -415,7 +412,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                 while(RochaEmQuestao->pProx != NULL){
                 // Itera até chegar na penúltima rocha do compartimento
                   
-                    if(VerificaSeTemQuemReceber(ListaSondas, RochaEmQuestao->rocha.Peso)){
+                    if(VerificaSeTemQuemReceber(ListaSondas, &AuxiliarSondas->Sonda.CompartmentoS, RochaEmQuestao->rocha.Peso)){
                     //Vê se tem outra sonda pra ficar com a rocha sendo percorrida
 
                         Celula* RochaRemovida = RemoveRocha(&AuxiliarSondas->Sonda.CompartmentoS,
@@ -426,13 +423,14 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                         PESOMAXIMO);
                     }
 
-
                     if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) <= Med + 5){
                             break;
                         }
 
                     RochaEmQuestao = RochaEmQuestao->pProx;
                 }  
+
+                break;
             }
 
             AuxiliarSondas = AuxiliarSondas->pProx;
@@ -449,15 +447,12 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
 
         int ver = 0;
         
-        printf("com tem\n");
-        ImprimiLista(&ComTemporario);
-        printf("\n");
-
         int indm = VetorSondas[0]->Identificador;
 
         while (AuxiliarSondas != NULL) {
 
             if(!VerificaListaVazia(&ComTemporario)){
+
                 if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
                     <= AuxiliarSondas->Sonda.CompartmentoS.PesoMax &&
                      AuxiliarSondas->Sonda.Identificador == VetorSondas[ver]->Identificador){ 
@@ -477,13 +472,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
     
                     } else {
 
-                        printf("coom tm antes\n");
-                        ImprimiLista(&ComTemporario);
-
                         Celula* RochaRemovida = RemoveRocha(&ComTemporario, ComTemporario.ultimo);
-
-                        printf("coom tm dps\n");
-                        ImprimiLista(&ComTemporario);
 
                         InsereRocha(&AuxiliarSondas->Sonda.CompartmentoS,
                                     RochaRemovida, 
@@ -495,21 +484,28 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                         if(VerificaListaVazia(&ComTemporario)){
                             break;
                         }
-                        break;
 
                     }
 
-                    indm = VetorSondas[0]->Identificador;
+                    if(!VerificaListaVazia(&ComTemporario) && AuxiliarSondas->pProx == NULL){
                     AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
+                    }
 
                 } else if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
                     > AuxiliarSondas->Sonda.CompartmentoS.PesoMax &&
                      AuxiliarSondas->Sonda.Identificador == indm){
                     //Caso seja a sonda de menor peso, mas não caiba a rocha nela, colocaremos na próxima de menor peso
                     ver++;
+
+                    if(!VerificaListaVazia(&ComTemporario) && AuxiliarSondas->pProx == NULL){
+                    AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
+                    }
+
                 } else {
                     AuxiliarSondas = AuxiliarSondas->pProx;
                 } 
+            } else {
+                break;
             }
 
         }
@@ -519,18 +515,28 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
 }
 
 
-int VerificaSeTemQuemReceber(TSondas *lista, double peso){
+int VerificaSeTemQuemReceber(TSondas *lista, Compartimento *Comp, double peso){
 
     int rec = 0;
 
-    int iden = lista->pPrimeiro->pProx->Sonda.Identificador;
+    int iden;
 
     Apontador AuxiliarSondas = lista->pPrimeiro->pProx;
+
+    while(AuxiliarSondas!= NULL){
+        if(AuxiliarSondas->Sonda.CompartmentoS.PesoMax == Comp->PesoMax){
+            iden = AuxiliarSondas->Sonda.Identificador;
+        }
+        AuxiliarSondas = AuxiliarSondas->pProx;
+    }
+    
+
+    AuxiliarSondas = lista->pPrimeiro->pProx;
 
     while (AuxiliarSondas != NULL){
         if(AuxiliarSondas->Sonda.Identificador != iden){
             if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS) + peso <= AuxiliarSondas->Sonda.CompartmentoS.PesoMax){
-                rec = 1;
+                rec = AuxiliarSondas->Sonda.Identificador;
                 break;
             }
         }
