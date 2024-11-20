@@ -18,8 +18,9 @@ int TamanhoListaRocha(Compartimento *lista);//Retorna o numero(int) de Rochas ar
 int VerificaListaVazia(Compartimento *lista);//Verifica se a Lista esta vazia
 void ImprimiLista(Compartimento *lista);//Exibe todo o conteudo do compartimento
 double PesoAtual(Compartimento *lista);//Retorna o peso total do compartimento/lista
-void TrocaRocha(Compartimento *lista, RochaMineral *rocha);//Adiciona uma rocha mais leve no lugar da rocha mais pesada do mesmo tipo
-int InsereRocha(Compartimento *lista, RochaMineral *rocha, double PesoMax);//Insere uma rocha encontrada no final da lista, seguindo as regras
-RochaMineral *RemoveRocha(Compartimento *lista, RochaMineral *rocha);//Remove a rocha de acordo com a categoria(nome)
+int TrocaRocha(Compartimento *lista, RochaMineral *rocha);//Adiciona uma rocha mais leve no lugar da rocha mais pesada do mesmo tipo
+int InsereRocha(Compartimento *lista, Celula* rocha, double PesoMax);//Insere uma rocha encontrada no final da lista, seguindo as regras
+Celula* RemoveRocha(Compartimento *lista, Celula* rocha);//Remove a rocha de acordo com a categoria(nome)
+int VerificaRochaExistente(Compartimento *lista, RochaMineral *rocha);
 
 #endif
