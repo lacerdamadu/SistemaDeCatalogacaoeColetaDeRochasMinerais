@@ -31,6 +31,7 @@ void Central(TSondas *ListaSondas){
 
 
 int LeituraPorArquivo(TSondas *ListaSondas){
+    
     char data[Data];
     time_t mytime;
     mytime = time(NULL);
@@ -51,12 +52,15 @@ int LeituraPorArquivo(TSondas *ListaSondas){
     int  c_i, v_i, vc_i, identificador;
 
     fscanf(entrada,"%d", &numsondas);
+    printf("num s:%d\n", numsondas);
     FazListaVazia(ListaSondas);
-    for(int i = 0; i<numsondas;i++){
+    printf("Fez  lista vazia\n");
+    for(int m = 0; m<numsondas;m++){
         Sonda NovaSonda;
-        identificador = i+1;
-        fscanf(entrada,"%lf %lf %lf %d %d", &lat_i, &long_i, &c_i, &v_i, &vc_i);
+        identificador = m+1;
+        fscanf(entrada,"%lf %lf %d %d %d", &lat_i, &long_i, &c_i, &v_i, &vc_i);
         InicializaSonda(&NovaSonda, lat_i, long_i, c_i, v_i, vc_i, identificador);
+        printf("Sonda: %lf %lf %d %d %d\n", lat_i, long_i, c_i, v_i, vc_i, identificador);
         InsereSonda(ListaSondas, &NovaSonda);
     }
     
@@ -71,10 +75,12 @@ int LeituraPorArquivo(TSondas *ListaSondas){
     char aux;
     fscanf(entrada, "%c", &aux);//Pega o \n da linha anterior
     for(int jk=0;jk<numoperacoes;jk++){
+        
         double Distancias[numsondas];
         fscanf(entrada,"%c", &ope);
         fscanf(entrada, "%c", &aux);//Pega o \n da linha anterior
         
+        printf("Op %d: %c\n", jk+1, ope);
 
         char linha[STRING];
         if(ope == 'R'){
@@ -183,6 +189,7 @@ int LeituraPorArquivo(TSondas *ListaSondas){
                         if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= 
                         MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
                             MoveSonda(&MemoriaQueQueremos->Sonda, RochaTeste.rocha.Latitude, RochaTeste.rocha.Longitude);
+                            printf("inseriu a rocha %s no %d\n", RochaTeste.rocha.Categoria, MemoriaQueQueremos->Sonda.Identificador);
                             InsereRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste, MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax);
                             break;
                         } 
@@ -190,9 +197,7 @@ int LeituraPorArquivo(TSondas *ListaSondas){
                         MemoriaQueQueremos = Memorias[d+1];
                         }  
                     }
-                    EsvaziaLista(&listaMinerais);
-                    
-        
+                    EsvaziaLista(&listaMinerais);     
         }
         if(ope == 'I'){
             ImprimeSonda(ListaSondas);
