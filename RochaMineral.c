@@ -22,33 +22,33 @@ void ClassificaRocha(RochaMineral *Rocha, ListaMinerais *ListaMin){
     char categoria[20] = "";
 
     for(int i = 0; i < MaxTam; i++){
-        if ((strcmp(ListaMin->listaminerais[i].Nome, "Ferrolita") == 0)){
+        if ((strcmp(ListaMin->listaminerais[i].Nome, "Ferrolita") == 0)||(strcmp(ListaMin->listaminerais[i].Nome, "Ferrolita\n") == 0)){
             ferrolita = 1;
         }
    }
     for(int i = 0; i < MaxTam; i++){
-        if ((strcmp(ListaMin->listaminerais[i].Nome, "Solarium") == 0)){
+        if ((strcmp(ListaMin->listaminerais[i].Nome, "Solarium") == 0)||strcmp(ListaMin->listaminerais[i].Nome, "Solarium\n") == 0){
             solarium = 1;
         }
    }
 
 
    for(int i = 0; i < MaxTam; i++){
-        if ((strcmp(ListaMin->listaminerais[i].Nome, "Aquavitae") == 0)){
+        if ((strcmp(ListaMin->listaminerais[i].Nome, "Aquavitae") == 0)|| strcmp(ListaMin->listaminerais[i].Nome, "Aquavitae\n") == 0){
             aquavitae = 1;
         }
    }
 
 
     for(int i = 0; i < MaxTam; i++){
-        if ((strcmp(ListaMin->listaminerais[i].Nome, "Terranita") == 0)){
+        if ((strcmp(ListaMin->listaminerais[i].Nome, "Terranita") == 0)||(strcmp(ListaMin->listaminerais[i].Nome, "Terranita\n") == 0)){
             terranita = 1;
         }
    }
 
 
     for(int i = 0; i < MaxTam; i++){
-        if ((strcmp(ListaMin->listaminerais[i].Nome, "Calaris") == 0)){
+        if ((strcmp(ListaMin->listaminerais[i].Nome, "Calaris") == 0)||(strcmp(ListaMin->listaminerais[i].Nome, "Calaris\n") == 0)){
             calaris = 1;
         }
    }   

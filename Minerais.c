@@ -7,27 +7,27 @@ void PreencheMineral(Minerais *Mineral, char *Nome){/*Esta função recebe o nom
                                                     Reatividade e Cor.*/
     double Dureza, Reatividade;
     Cor Cores;
-    if(strcmp(Nome, "Ferrolita")==0){
+    if(strcmp(Nome, "Ferrolita")==0||strcmp(Nome, "Ferrolita\n")==0){
         Dureza = 0.5;
         Reatividade = 0.7;
         Cores = Acizentado;
     }
-    else if(strcmp(Nome, "Solarium")==0){
+    else if(strcmp(Nome, "Solarium")==0||strcmp(Nome, "Solarium\n")==0){
         Dureza = 0.9;
         Reatividade = 0.2;
         Cores = Amarelo;
     }
-    else if(strcmp(Nome, "Aquavitae")==0){
+    else if(strcmp(Nome, "Aquavitae")==0|| strcmp(Nome, "Aquavitae\n")==0){
         Dureza = 0.5;
         Reatividade = 0.8;
         Cores = Azulado;
     }
-    else if(strcmp(Nome, "Terranita")==0){
+    else if(strcmp(Nome, "Terranita")==0||strcmp(Nome, "Terranita\n")==0){
         Dureza = 0.7;
         Reatividade = 0.6;
         Cores = Marrom;
     }
-    else if(strcmp(Nome, "Calaris")==0){
+    else if(strcmp(Nome, "Calaris")==0||strcmp(Nome, "Calaris\n")==0){
         Dureza = 0.6;
         Reatividade = 0.5;
         Cores = Vermelho;

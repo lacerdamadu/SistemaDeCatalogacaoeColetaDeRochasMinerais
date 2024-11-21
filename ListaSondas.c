@@ -48,7 +48,7 @@ int ImprimeSonda(TSondas* Sondas){
         return 0;
     }
     while (pAux != NULL) {
-        printf("Identificador: %d\n", pAux->Sonda.Identificador);
+        printf("%d\n", pAux->Sonda.Identificador);
         if(VerificaListaVazia(&pAux->Sonda.CompartmentoS)){
             printf("Compartimento Vazio!\n");
         } else{
