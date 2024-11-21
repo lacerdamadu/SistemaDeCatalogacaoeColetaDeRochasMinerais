@@ -186,15 +186,13 @@ int LeituraPorArquivo(TSondas *ListaSondas){
 int numsondas = 0;
 
 int LeituraPeloTerminal(TSondas *ListaSondas){
-
     char data[Data];
     time_t mytime;
     mytime = time(NULL);
-    
-
     if(numsondas==0){
 
-        printf(" Bem-vindos a central de Inicializaçao de Sondas.\n"
+        printf(" Bem-vindos a central de Inicializaçao de Sondas e Coleta de Rochas!\n"
+        "O primeiro passo é criar as sondas necessárias para a analise do solo Marciano."
         "Esta operacao ira criar uma nova sonda de acordo com os atributos digitados.\n"
         "A sonda tambem sera ligada e disparada para o solo Marciano.\n"
         "Quantas sondas gostaria de iniciar? ");
@@ -263,7 +261,7 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                 double latrocha, longrocha, pesorocha; 
         
 
-                printf("Digite as informaces da rocha %d:\n", r+1);
+                printf("Digite as informaces da %dª rocha:\n", r+1);
 
                 printf("Latitude:");
                 scanf("%lf", &latrocha);
@@ -277,7 +275,6 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                 scanf("%lf", &pesorocha);
                 getchar();
              
-
                 char TodosMinerais[300];
                 char nome[100];
                 int j = 0;
@@ -310,7 +307,6 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
 
                 /*Vetor para armazenar as distancias das sondas em relaçao a rocha*/                            
                 double Distancias[numsondas];       
-
                 Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
                 /*Armazenando as sondas em um vetor pra poder usar o indicie*/
                 Apontador Memorias[numsondas]; 
@@ -335,7 +331,6 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                             Apontador auxp = Memorias[f];
                             Memorias[f] = Memorias[f+1];
                             Memorias[f+1] = auxp;
-                            //IndDes = j+1;
                             }
                         } 
                     } 
@@ -345,13 +340,15 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                     MemoriaQueQueremos = Memorias[0];
                     /*Insere a rocha no compartimento da sonda com menor distancia*/
                     for(int d = 0; d < numsondas; d++){
-                        if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
+                        if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= 
+                        MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
                             MoveSonda(&MemoriaQueQueremos->Sonda, RochaTeste.rocha.Latitude, RochaTeste.rocha.Longitude);
                             InsereRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste, MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax);
                             break;
-                    } else {
-                            MemoriaQueQueremos = Memorias[d+1];
-                             }
+                        } 
+                    else {
+                        MemoriaQueQueremos = Memorias[d+1];
+                        }
                     }
                     EsvaziaLista(&ListaMineirais);
             }    
@@ -363,7 +360,7 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
         }
         else{
             return 0;
-            } 
+        } 
     }
     else if(escolha == 3) {
             printf("Esta opercacao irá imprimir as informacoes das rochas coletadas ate o momento,\n"
