@@ -85,8 +85,6 @@ int LeituraPorArquivo(TSondas *ListaSondas){
             IniVListaM(&listaMinerais);
             fscanf(entrada, "%c", &aux);//Pega o \n da linha anterior
             fgets(linha, sizeof(linha), entrada);//A funcao fgets le uma linha inteira e armazena em um vetor de char
-           
-
             //Variaveis auxiliares
             char lat[STRING], lont[STRING], pes[STRING];
             char* pt;
@@ -212,15 +210,16 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
     mytime = time(NULL);
     if(numsondas==0){
 
-        printf(" Bem-vindos a central de Inicializaçao de Sondas e Coleta de Rochas!\n"
-        "O primeiro passo é criar as sondas necessárias para a analise do solo Marciano."
+        printf("Bem-vindos a central de Inicializacao de Sondas!\n"
+        "O primeiro passo e criar as sondas necessarias para a analise do solo Marciano."
         "Esta operacao ira criar uma nova sonda de acordo com os atributos digitados.\n"
         "A sonda tambem sera ligada e disparada para o solo Marciano.\n"
-        "Quantas sondas gostaria de iniciar? ");
+        "Quantas sondas gostaria de iniciar?");
         
         int sondas;
         scanf("%d", &sondas);
         numsondas += sondas;
+        printf("\n");
         for(int s = 0; s < numsondas; s++){
             Sonda NovaSonda;
             
@@ -250,11 +249,12 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
             InicializaSonda(&NovaSonda, lat_i, long_i, c_i,
              v_i, nc_i, identificador);
 
-             printf("identificador dessa sonda: %d\n", identificador);
+             printf("Identificador dessa sonda: %d\n", identificador);
 
             InsereSonda(ListaSondas,&NovaSonda);
 
             LigaSonda(&NovaSonda);
+            printf("\n");
 
         }
         printf("Inicializando informacoes...\n");
@@ -278,11 +278,12 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
             "Quantas rochas gostaria de coletar? ");
             int numrochas;
             scanf("%d", &numrochas);
+            printf("\n");
             for(int r = 0; r <numrochas; r++){
                 double latrocha, longrocha, pesorocha; 
         
 
-                printf("Digite as informaces da %dª rocha:\n", r+1);
+                printf("Digite as informaces da rocha %d:\n", r+1);
 
                 printf("Latitude:");
                 scanf("%lf", &latrocha);
@@ -370,6 +371,7 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                         }
                     }
                     EsvaziaLista(&ListaMineirais);
+                    printf("\n");
             }    
         printf("Deseja realizar outra operacao?(s/n)");
         char res1;
@@ -382,7 +384,7 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
         } 
     }
     else if(escolha == 3) {
-            printf("Esta opercacao irá imprimir as informacoes das rochas coletadas ate o momento,\n"
+            printf("Esta opercacao ira imprimir as informacoes das rochas coletadas ate o momento,\n"
             "alem da identificacao de qual sonda ela esta armazenda.\n");
 
             ImprimeSonda(ListaSondas);
@@ -400,7 +402,7 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
         } 
         else if(escolha == 2){
             printf("Esta funcao ira mover todas as sondas para o ponto (0,0) e redistrubuir as rochas entre elas.\n"
-            "Com o intuito de que cada sonda fique com aproximadamente a media do peso total delas.\n");
+            "Com o intuito de que cada sonda fique com aproximadamente a media do peso total delas.\n\n");
                 int m = 1;
                 RedistribuiRochas(ListaSondas, numsondas);
                 printf("Deseja realizar outra operacao?(s/n)\n");
