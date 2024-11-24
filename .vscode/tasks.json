@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build",
+        "type": "shell",
+        "command": "gcc",
+        "args": [
+          "-o", "bin/AEDS1",
+          "src/main.c",
+          "src/Sistema de Controle/SistemadeControle.c",
+          "src/Sistema de Controle/Lista de Sondas/ListaSondas.c",
+          "src/Sistema de Controle/Lista de Sondas/Sonda/Sonda.c",
+          "src/Sistema de Controle/Lista de Sondas/Sonda/Compartimentos/Compatimento.c",
+          "src/Sistema de Controle/Lista de Sondas/Sonda/Compartimentos/Rochas Minerais/RochaMineral.c",
+          "src/Sistema de Controle/Lista de Sondas/Sonda/Compartimentos/Rochas Minerais/Lista de Minerias/ListaMinerais.c",
+          "src/Sistema de Controle/Lista de Sondas/Sonda/Compartimentos/Rochas Minerais/Lista de Minerias/Minerais/Minerais.c"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": ["$gcc"]
+      },
+      {
+        "label": "run",
+        "type": "shell",
+        "command": "./bin/AEDS1",
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        }
+      }
+    ]
+  }
