@@ -73,14 +73,10 @@ int LeituraPorArquivo(TSondas *ListaSondas){
     int numoperacoes1 = 0;
 
     fscanf(entrada,"%d", &numoperacoes1);
-    /*fgets(linha1, sizeof(linha1), entrada);
-    ptr = strtok(linha1, "/n");
-    strcpy(numoperacoes, ptr);
-    numoperacoes1 = atoi(numoperacoes);*/
 
     char aux;
-    printf("numero de operações: %d\n", numoperacoes1);
     fscanf(entrada, "%c", &aux);//Pega o \n da linha anterior
+
     for(int jk=0;jk<numoperacoes1;jk++){
  
         fscanf(entrada,"%c", &ope);
@@ -91,6 +87,7 @@ int LeituraPorArquivo(TSondas *ListaSondas){
             ListaMinerais listaMinerais;
             IniVListaM(&listaMinerais);
             fgets(linha2, sizeof(linha2), entrada);//A funcao fgets le uma linha inteira e armazena em um vetor de char
+
             //Variaveis auxiliares
             char lat[STRING], lont[STRING], pes[STRING];
             char* pt;
@@ -131,7 +128,7 @@ int LeituraPorArquivo(TSondas *ListaSondas){
             latrocha = atof(lat);
             longrocha = atof(lont);
             pesorocha = atof(pes);
-            printf("lat %lf long %lf\n \n", latrocha, longrocha);
+           
             //Verifica se ha um nome de mineral na string, inicializa um mineral e o insere na lista de minerais
             if(strcmp(mineral1, "NAO TEM NADA")!=0){
                 InsMineral(&listaMinerais, mineral1);
@@ -142,59 +139,8 @@ int LeituraPorArquivo(TSondas *ListaSondas){
             if(strcmp(mineral3, "NAO TEM NADA")!=0){
                 InsMineral(&listaMinerais, mineral3);
             }
+            //Chama a função coleta que tem por intuito encontrar qual a melhor sonda para armazenar a rocha
             Coleta(&listaMinerais, ListaSondas, numsondas, pesorocha, latrocha, longrocha);
-
-            /*Inicializa uma rocha nova a partir da linha do arquivo
-            Celula RochaTeste;
-            InicializaRocha(&RochaTeste.rocha, pesorocha, &listaMinerais, 
-            latrocha, longrocha, ctime(&mytime)); 
-            
-            Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
-
-            Apontador Memorias[numsondas];
-
-            double Distancias[numsondas];
-
-            /*Percorre a lista de sondas armazenando as distancia relativas
-            for(int i = 0; i < numsondas; i++){
-                Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste.rocha);
-                Memorias[i] = AuxLis;
-                AuxLis = AuxLis->pProx;
-            } 
-
-            double MenorDist = Distancias[0];
-
-                /*Ordena o vetor das distâncias da menor para a maior e junto as sondas
-            for(int j = 0; j < numsondas-1; j++){
-                for(int f = 0; f <numsondas-1-j;f++){
-                    if(Distancias[f+1] < Distancias[f]){
-                        double aux = Distancias[f];
-                        Distancias[f] = Distancias[f+1];
-                        Distancias[f+1] = aux;
-                        Apontador auxp = Memorias[f];
-                        Memorias[f] = Memorias[f+1];
-                        Memorias[f+1] = auxp;
-                    }
-                } 
-            } 
-
-            Apontador MemoriaQueQueremos;
-
-            /*Insere a rocha no compartimento da sonda com menor distancia
-            for(int d = 0; d < numsondas; d++){
-                MemoriaQueQueremos = Memorias[d];
-
-                /*if(VerificaRochaExistente(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste.rocha)!=0){
-                    TrocaRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste.rocha);
-                    break;
-                }
-                if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= 
-                MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
-                    MoveSonda(&MemoriaQueQueremos->Sonda, RochaTeste.rocha.Latitude, RochaTeste.rocha.Longitude);
-                    InsereRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste, MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax);
-                    break;
-                }
-            }*/
             EsvaziaLista(&listaMinerais);  
         }
         
@@ -327,58 +273,10 @@ int LeituraPeloTerminal(TSondas *ListaSondas){
                     }
                 }
 
-
-                /*Inicializa uma rocha nova rocha a partir do que o usuário digita*/  
-                Celula RochaTeste;
-                InicializaRocha(&RochaTeste.rocha, pesorocha, &ListaMineirais,
-                latrocha, longrocha, ctime(&mytime));  
-
-                /*Vetor para armazenar as distancias das sondas em relaçao a rocha*/                            
-                double Distancias[numsondas];       
-                Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
-                /*Armazenando as sondas em um vetor pra poder usar o indicie*/
-                Apontador Memorias[numsondas]; 
-
-                /*Percorre a lista de sondas armazenando as distancia relativas*/
-                for(int i = 0; i < numsondas; i++){
-                    Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste.rocha);
-                    Memorias[i] = AuxLis;
-                    AuxLis = AuxLis->pProx;
-                } 
-
-                double MenorDist = Distancias[0];
-                int IndDes = 1;
-
-                 /*Ordena o vetor das distâncias da menor para a maior e junto as sondas*/
-                for(int j = 0; j < numsondas-1; j++){
-                    for(int f = 0; f <numsondas-1-j;f++){
-                        if(Distancias[f+1] < Distancias[f]){
-                            double aux = Distancias[f];
-                            Distancias[f] = Distancias[f+1];
-                            Distancias[f+1] = aux;
-                            Apontador auxp = Memorias[f];
-                            Memorias[f] = Memorias[f+1];
-                            Memorias[f+1] = auxp;
-                            }
-                        } 
-                    } 
-                    printf("\nid sonda perto: %d\nnome rocha: %s lugar da rocha: lat %lf long %lf\n",  Memorias[0]->Sonda.Identificador,RochaTeste.rocha.Categoria, latrocha, longrocha);
-                    printf("Distancia sonda: %lf %lf\n\n", Memorias[0]->Sonda.Latitude, Memorias[0]->Sonda.Longitude);
-                    Apontador MemoriaQueQueremos;
-
-                    /*Insere a rocha no compartimento da sonda com menor distancia*/
-                    for(int d = 0; d < numsondas; d++){
-                        MemoriaQueQueremos = Memorias[d];
-
-                        if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= 
-                        MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
-                            MoveSonda(&MemoriaQueQueremos->Sonda, RochaTeste.rocha.Latitude, RochaTeste.rocha.Longitude);
-                            InsereRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste, MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax);
-                            break;
-                        }
-                    }
-                    EsvaziaLista(&ListaMineirais);
-                    printf("\n");
+                //Chama a função coleta que tem por intuito encontrar qual a melhor sonda para armazenar a rocha
+                Coleta(&ListaMineirais, ListaSondas, numsondas, pesorocha, latrocha, longrocha);
+                EsvaziaLista(&ListaMineirais);
+                printf("\n");
             }    
         printf("Deseja realizar outra operacao?(s/n)");
         char res1;
@@ -605,59 +503,58 @@ void PreencheVetor(TSondas *Sondas, Sonda **VetorSondas, int numsondas){
 }
 
 void Coleta(ListaMinerais *ListaMineirais,TSondas *ListaSondas, int numsondas, double pesorocha, double latrocha, double longrocha){
-                char data[Data];
-                 time_t mytime;
-                mytime = time(NULL);
+    char data[Data];
+    time_t mytime;
+    mytime = time(NULL);
                  
                 
-                /*Inicializa uma rocha nova rocha a partir do que o usuário digita*/  
-                Celula RochaTeste;
-                InicializaRocha(&RochaTeste.rocha, pesorocha, ListaMineirais,
-                latrocha, longrocha, ctime(&mytime));  
+    /*Inicializa uma rocha nova rocha a partir do que o usuário digita*/  
+    Celula RochaTeste;
+    InicializaRocha(&RochaTeste.rocha, pesorocha, ListaMineirais,
+    latrocha, longrocha, ctime(&mytime));  
 
-                /*Vetor para armazenar as distancias das sondas em relaçao a rocha*/                            
-                double Distancias[numsondas];       
-                Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
-                /*Armazenando as sondas em um vetor pra poder usar o indicie*/
-                Apontador Memorias[numsondas]; 
+    /*Vetor para armazenar as distancias das sondas em relaçao a rocha*/                            
+    double Distancias[numsondas];       
+    Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
 
-                /*Percorre a lista de sondas armazenando as distancia relativas*/
-                for(int i = 0; i < numsondas; i++){
-                    Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste.rocha);
-                    Memorias[i] = AuxLis;
-                    AuxLis = AuxLis->pProx;
-                } 
+    /*Armazenando as sondas em um vetor pra poder usar o indicie*/
+    Apontador Memorias[numsondas]; 
 
-                double MenorDist = Distancias[0];
-                int IndDes = 1;
+    /*Percorre a lista de sondas armazenando as distancia relativas*/
+    for(int i = 0; i < numsondas; i++){
+        Distancias[i] = CalculaDist(AuxLis->Sonda, RochaTeste.rocha);
+        Memorias[i] = AuxLis;
+        AuxLis = AuxLis->pProx;
+    } 
 
-                 /*Ordena o vetor das distâncias da menor para a maior e junto as sondas*/
-                for(int j = 0; j < numsondas-1; j++){
-                    for(int f = 0; f <numsondas-1-j;f++){
-                        if(Distancias[f+1] < Distancias[f]){
-                            double aux = Distancias[f];
-                            Distancias[f] = Distancias[f+1];
-                            Distancias[f+1] = aux;
-                            Apontador auxp = Memorias[f];
-                            Memorias[f] = Memorias[f+1];
-                            Memorias[f+1] = auxp;
-                            }
-                        } 
-                    } 
-                    printf("\nid sonda perto: %d\nnome rocha: %s lugar da rocha: lat %lf long %lf\n",  Memorias[0]->Sonda.Identificador,RochaTeste.rocha.Categoria, latrocha, longrocha);
-                    printf("Distancia sonda: %lf %lf\n\n", Memorias[0]->Sonda.Latitude, Memorias[0]->Sonda.Longitude);
-                    Apontador MemoriaQueQueremos;
+    double MenorDist = Distancias[0];
+    int IndDes = 1;
 
-                    /*Insere a rocha no compartimento da sonda com menor distancia*/
-                    for(int d = 0; d < numsondas; d++){
-                        MemoriaQueQueremos = Memorias[d];
+    /*Ordena o vetor das distâncias da menor para a maior e junto as sondas*/
+    for(int j = 0; j < numsondas-1; j++){
+        for(int f = 0; f <numsondas-1-j;f++){
+            if(Distancias[f+1] < Distancias[f]){
+                double aux = Distancias[f];
+                Distancias[f] = Distancias[f+1];
+                Distancias[f+1] = aux;
+                Apontador auxp = Memorias[f];
+                Memorias[f] = Memorias[f+1];
+                Memorias[f+1] = auxp;
+            }
+        } 
+    } 
+    
+    Apontador MemoriaQueQueremos;
 
-                        if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= 
-                        MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
-                            MoveSonda(&MemoriaQueQueremos->Sonda, RochaTeste.rocha.Latitude, RochaTeste.rocha.Longitude);
-                            InsereRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste, MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax);
-                            break;
-                        }
-                    }
-                    printf("\n");
+    /*Insere a rocha no compartimento da sonda com menor distancia*/
+    for(int d = 0; d < numsondas; d++){
+        MemoriaQueQueremos = Memorias[d];
+
+        if(PesoAtual(&MemoriaQueQueremos->Sonda.CompartmentoS) + RochaTeste.rocha.Peso <= 
+            MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax){ 
+            MoveSonda(&MemoriaQueQueremos->Sonda, RochaTeste.rocha.Latitude, RochaTeste.rocha.Longitude);
+            InsereRocha(&MemoriaQueQueremos->Sonda.CompartmentoS, &RochaTeste, MemoriaQueQueremos->Sonda.CompartmentoS.PesoMax);
+            break;
+        }
+    }
 }

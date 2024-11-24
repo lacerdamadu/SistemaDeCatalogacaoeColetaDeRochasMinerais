@@ -1,6 +1,4 @@
 #include "Sonda.h"
-
-
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
@@ -24,22 +22,19 @@ void DesligaSonda(Sonda *Sondalig){
     Sondalig->EstaLigada = 0;
 }
 
-double MoveSonda(Sonda *SondaMov, double Latitude, double Longitude){
-
+void MoveSonda(Sonda *SondaMov, double Latitude, double Longitude){
     if (!SondaMov->EstaLigada){
         LigaSonda(SondaMov);
     }
-    
     SondaMov->Latitude = Latitude;
     SondaMov->Longitude = Longitude;
-    
+
 }
 
 double CalculaDist(Sonda Sonda, RochaMineral Rocha){
 
     double DistTotal;
     double DistLat, DistLong, ResultRaiz;
-
     
     if(Sonda.Latitude > Rocha.Latitude){
         DistLat = Sonda.Latitude - Rocha.Latitude;
@@ -58,5 +53,4 @@ double CalculaDist(Sonda Sonda, RochaMineral Rocha){
     DistTotal = sqrt(ResultRaiz);
 
     return(DistTotal);
-    
 }
