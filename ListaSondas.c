@@ -3,19 +3,17 @@
 #include <string.h>
 #include <stdlib.h>
 
-void FazListaVazia(TSondas* sonda)
-{
-     sonda->pPrimeiro = (Apontador) malloc(sizeof(TCelula_S));
-     sonda->pUltimo = sonda->pPrimeiro;
-     sonda->pPrimeiro->pProx = NULL;
+void FazListaVazia(TSondas* sonda){
+    sonda->pPrimeiro = (Apontador) malloc(sizeof(TCelula_S));
+    sonda->pUltimo = sonda->pPrimeiro;
+    sonda->pPrimeiro->pProx = NULL;
 }
 
 void InsereSonda(TSondas* Sondas, Sonda* sonda){
-
-     Sondas->pUltimo->pProx = (Apontador) malloc(sizeof(TCelula_S));
-     Sondas->pUltimo = Sondas->pUltimo->pProx;
-     Sondas->pUltimo->Sonda = *sonda;
-     Sondas->pUltimo->pProx = NULL;
+    Sondas->pUltimo->pProx = (Apontador) malloc(sizeof(TCelula_S));
+    Sondas->pUltimo = Sondas->pUltimo->pProx;
+    Sondas->pUltimo->Sonda = *sonda;
+    Sondas->pUltimo->pProx = NULL;
 }
 
 int RetiraSonda(TSondas* Sondas, int retirar){
@@ -48,7 +46,7 @@ int ImprimeSonda(TSondas* Sondas){
         return 0;
     }
     while (pAux != NULL) {
-        printf("Identificador: %d\n", pAux->Sonda.Identificador);
+        printf("%d\n", pAux->Sonda.Identificador);
         if(VerificaListaVazia(&pAux->Sonda.CompartmentoS)){
             printf("Compartimento Vazio!\n");
         } else{

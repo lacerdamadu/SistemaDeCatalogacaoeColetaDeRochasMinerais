@@ -21,6 +21,7 @@ double PesoAtual(Compartimento *lista);//Retorna o peso total do compartimento/l
 int TrocaRocha(Compartimento *lista, RochaMineral *rocha);//Adiciona uma rocha mais leve no lugar da rocha mais pesada do mesmo tipo
 int InsereRocha(Compartimento *lista, Celula* rocha, double PesoMax);//Insere uma rocha encontrada no final da lista, seguindo as regras
 Celula* RemoveRocha(Compartimento *lista, Celula* rocha);//Remove a rocha de acordo com a categoria(nome)
-int VerificaRochaExistente(Compartimento *lista, RochaMineral *rocha);
+int VerificaRochaExistente(Compartimento *lista, RochaMineral *rocha);//Verifica se já existe uma rocha daquele tipo no compartimento
+
 
 #endif

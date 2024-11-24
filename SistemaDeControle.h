@@ -13,5 +13,6 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas);
 int VerificaSeTemQuemReceber(TSondas *lista, Compartimento *Comp, double peso);
 void OrdenaPesos(Sonda **Sondas, int numsondas);
 void PreencheVetor(TSondas *Sondas, Sonda **VetorSondas, int numsondas);
+void Coleta(ListaMinerais *ListaMinerais,TSondas *ListaSondas, int numsondas, double pesorocha, double latrocha, double longrocha);
 
 #endif

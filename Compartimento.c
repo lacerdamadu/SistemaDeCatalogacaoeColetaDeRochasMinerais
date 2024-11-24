@@ -74,7 +74,7 @@ int InsereRocha(Compartimento *lista, Celula* rocha, double PesoMax){
     lista->ultimo->pProx = NULL;
     return 1;
 }
-//se der errado pare aqui
+
 Celula* RemoveRocha(Compartimento *lista, Celula* rocha){
     if (VerificaListaVazia(lista)){
         return 0;
@@ -92,13 +92,15 @@ Celula* RemoveRocha(Compartimento *lista, Celula* rocha){
         lista->ultimo = lista->primeiro;
         lista->ultimo->pProx = NULL;
 
-    } else if((strcmp(pAux->rocha.Categoria,rocha->rocha.Categoria) == 0) && (pAux->rocha.Peso == rocha->rocha.Peso)){ 
+    } 
+    else if((strcmp(pAux->rocha.Categoria,rocha->rocha.Categoria) == 0) && (pAux->rocha.Peso == rocha->rocha.Peso)){ 
     //caso esteja retirando o primeiro da lista
 
         pAux3 = pAux;
         lista->primeiro = lista->primeiro->pProx;
 
-    } else if((strcmp(lista->ultimo->rocha.Categoria,rocha->rocha.Categoria) == 0) 
+    } 
+    else if((strcmp(lista->ultimo->rocha.Categoria,rocha->rocha.Categoria) == 0) 
     && (lista->ultimo->rocha.Peso == rocha->rocha.Peso)){
     //caso esteja retirando do final da lista
 
@@ -110,7 +112,8 @@ Celula* RemoveRocha(Compartimento *lista, Celula* rocha){
         lista->ultimo = pAux;
         lista->ultimo->pProx = NULL;
 
-    } else{
+    } 
+    else{
     //caso esteja retirando do meio
         while(pAux != NULL){          
             pAux2 = pAux;
@@ -120,12 +123,9 @@ Celula* RemoveRocha(Compartimento *lista, Celula* rocha){
             }
             pAux = pAux->pProx;
         }
-
         pAux2->pProx = NULL;
         lista->ultimo = pAux2;
-
     }
-
     return pAux3;
 }
 
@@ -140,6 +140,5 @@ int VerificaRochaExistente(Compartimento *lista, RochaMineral *rocha){
         }
         pAux = pAux->pProx;
     }
-
     return ver;
 }
