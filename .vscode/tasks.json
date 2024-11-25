@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "build",
+        "label": "Compilacao",
         "type": "shell",
         "command": "gcc",
         "args": [
@@ -23,7 +23,7 @@
         "problemMatcher": ["$gcc"]
       },
       {
-        "label": "run",
+        "label": "Execucao",
         "type": "shell",
         "command": "./bin/AEDS1",
         "group": {
