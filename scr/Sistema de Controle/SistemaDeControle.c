@@ -421,7 +421,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                 AuxiliarSondas->Sonda.Identificador == VetorSondas[ver]->Identificador){ 
 
                     if(VerificaRochaExistente(&AuxiliarSondas->Sonda.CompartmentoS, &ComTemporario.ultimo->rocha)){
-
+                    
                         TrocaRocha(&AuxiliarSondas->Sonda.CompartmentoS, &ComTemporario.ultimo->rocha);
                         Celula* RochaRemovida = RemoveRocha(&ComTemporario, ComTemporario.ultimo);
 
@@ -455,7 +455,7 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                 else if(PesoAtual(&AuxiliarSondas->Sonda.CompartmentoS)+ComTemporario.ultimo->rocha.Peso
                     > AuxiliarSondas->Sonda.CompartmentoS.PesoMax &&
                      AuxiliarSondas->Sonda.Identificador == indm){
-                    //Caso seja a sonda de menor peso, mas não caiba a rocha nela, colocaremos na próxima de menor peso
+
                     ver++;
 
                     if(!VerificaListaVazia(&ComTemporario) && AuxiliarSondas->pProx == NULL){
