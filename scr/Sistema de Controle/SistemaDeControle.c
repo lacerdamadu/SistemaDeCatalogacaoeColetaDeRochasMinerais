@@ -139,11 +139,6 @@ int LeituraPorArquivo(TSondas *ListaSondas){
             if(strcmp(mineral3, "NAO TEM NADA")!=0){
                 InsMineral(&listaMinerais, mineral3);
             }
-
-            char data[Data];
-            time_t mytime;
-            mytime = time(NULL);
-                        
                         
             /*Inicializa uma rocha nova rocha a partir do que o usuário digita*/  
             Celula Rocha;
