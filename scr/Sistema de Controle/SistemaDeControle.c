@@ -463,6 +463,9 @@ void RedistribuiRochas(TSondas *ListaSondas, int numsondas){
                     }
 
                 } 
+                else if(!VerificaListaVazia(&ComTemporario) && AuxiliarSondas->pProx == NULL){
+                    AuxiliarSondas = ListaSondas->pPrimeiro->pProx;
+                }
                 else {
                     AuxiliarSondas = AuxiliarSondas->pProx;
                 } 
@@ -526,8 +529,6 @@ void PreencheVetor(TSondas *Sondas, Sonda **VetorSondas, int numsondas){
 }
 
 void Coleta(Celula Rocha,TSondas *ListaSondas, int numsondas){
-
-
     /*Vetor para armazenar as distancias das sondas em relaçao a rocha*/                            
     double Distancias[numsondas];       
     Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
