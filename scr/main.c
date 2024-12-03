@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "SistemaDeControle.h"
+#include "Central.h"
 
 int main(){
     TSondas ListaSondas;
