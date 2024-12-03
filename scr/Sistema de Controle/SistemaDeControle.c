@@ -529,6 +529,7 @@ void PreencheVetor(TSondas *Sondas, Sonda **VetorSondas, int numsondas){
 }
 
 void Coleta(Celula Rocha,TSondas *ListaSondas, int numsondas){
+
     /*Vetor para armazenar as distancias das sondas em relaçao a rocha*/                            
     double Distancias[numsondas];       
     Apontador AuxLis = ListaSondas->pPrimeiro->pProx;
